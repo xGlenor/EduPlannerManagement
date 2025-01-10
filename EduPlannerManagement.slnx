@@ -1,0 +1,13 @@
+﻿<Solution>
+  <Folder Name="/EduPlanner/">
+    <Project Path="src\EduPlanner.API\EduPlanner.API.csproj" Type="Classic C#" />
+    <Project Path="src\EduPlanner.Application\EduPlanner.Application.csproj" Type="Classic C#" />
+    <Project Path="src\EduPlanner.DBConverter\EduPlanner.DBConverter.csproj" Type="Classic C#" />
+    <Project Path="src\EduPlanner.Domain\EduPlanner.Domain.csproj" Type="Classic C#" />
+    <Project Path="src\EduPlanner.Infrastructure\EduPlanner.Infrastructure.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
+    <File Path=".env" />
+  </Folder>
+</Solution>
