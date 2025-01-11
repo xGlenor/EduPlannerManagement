@@ -8,4 +8,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EduPlanner.Domain\EduPlanner.Domain.csproj" />
+      <ProjectReference Include="..\EduPlanner.Infrastructure\EduPlanner.Infrastructure.csproj" />
+
+    </ItemGroup>
+
 </Project>
