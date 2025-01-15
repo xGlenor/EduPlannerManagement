@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:EduPlanner.AtsDbConverter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="ATS4 Database Converter" Height="450" Width="800">
     <Grid>
-
+        <TabControl x:Name="TabControl"  TabStripPlacement="Left" materialDesign:ColorZoneAssist.Mode="PrimaryDark" 
+                    SelectionChanged="TabControl_SelectionChanged" >
+            <TabItem x:Name="DatabaseConfiguration" Header="Konfiguracja" />
+            <TabItem x:Name="ImportConfiguration" Header="Import" />
+        </TabControl>
     </Grid>
 </Window>

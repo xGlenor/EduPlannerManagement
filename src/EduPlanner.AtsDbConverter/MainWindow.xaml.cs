@@ -1,13 +1,7 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using EduPlanner.AtsDbConverter.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EduPlanner.AtsDbConverter;
 
@@ -16,8 +10,31 @@ namespace EduPlanner.AtsDbConverter;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    private readonly IServiceProvider _serviceProvider;
+    
+    public MainWindow(IServiceProvider serviceProvider)
     {
+        _serviceProvider = serviceProvider;
         InitializeComponent();
+    }
+
+    private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.Source is TabControl tabControl)
+        {
+            var selectedTab = tabControl.SelectedItem as TabItem;
+            if (selectedTab != null)
+            {
+                switch (selectedTab.Name)
+                {
+                    case "DatabaseConfiguration":
+                        selectedTab.Content = _serviceProvider.GetRequiredService<MainView>();
+                        break;
+                    case "ImportConfiguration":
+                        selectedTab.Content = _serviceProvider.GetRequiredService<ConverterView>();
+                        break;
+                }
+            }
+        }
     }
 }
