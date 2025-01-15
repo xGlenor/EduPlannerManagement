@@ -9,6 +9,19 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ApplicationDefinition Remove="App.xaml" />
+        <Page Include="App.xaml" />
+    </ItemGroup>
+    
+    
+    <ItemGroup>
+        <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+
+    </ItemGroup>
+    
+    <ItemGroup>
       <ProjectReference Include="..\EduPlanner.Application\EduPlanner.Application.csproj" />
       <ProjectReference Include="..\EduPlanner.Infrastructure\EduPlanner.Infrastructure.csproj" />
     </ItemGroup>
