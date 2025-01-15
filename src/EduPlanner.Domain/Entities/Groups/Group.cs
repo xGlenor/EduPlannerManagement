@@ -23,4 +23,6 @@ public class Group: IEntity
     public int? GroupTreeId { get; set; }
     public GroupTree? GroupTree { get; set; } //todo
     
+    public ICollection<GroupCourse>? GroupCourse { get; set; }
+    
 }
