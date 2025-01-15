@@ -13,7 +13,7 @@ public class GroupTree: IEntity
     [Column("bShowPlan")]
     public bool ShowPlan { get; set; }
     
-    [Column("id_group_tree")]
+    [Column("parent")]
     public int? ParentId { get; set; }
     public GroupTree? Parent { get; set; }
     
