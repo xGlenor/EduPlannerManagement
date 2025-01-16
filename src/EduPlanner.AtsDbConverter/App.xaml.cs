@@ -3,7 +3,8 @@ using System.Data;
 using System.Windows;
 using System.Windows.Threading;
 using EduPlanner.AtsDbConverter.Views;
-using EduPlanner.Infrastructure.Database;
+using EduPlanner.Infrastructure;
+using EduPlanner.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +39,7 @@ public partial class App : System.Windows.Application
             })
             .ConfigureServices((hostContext, services) =>
             {
+                services.AddInfrastructure(hostContext.Configuration);
                 //
                 // ADD VIEWS
                 //
@@ -52,11 +54,11 @@ public partial class App : System.Windows.Application
 
                 services.AddSingleton<Dispatcher>(_ => Current.Dispatcher);
                     
-                services.AddDbContext<ApplicationDbContext>(opt =>
+                /*services.AddDbContext<ApplicationDbContext>(opt =>
                 {
                     var connectionString = hostContext.Configuration.GetConnectionString("Default");
                     opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-                });
+                });*/
             });
     
 }
