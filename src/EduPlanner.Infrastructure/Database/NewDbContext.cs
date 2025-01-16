@@ -63,7 +63,7 @@ public class NewDbContext: DbContext
             .HasKey(ct => new { ct.TeacherId, ct.ReservationId });
         
         
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(NewDbContext).Assembly);
+        base.OnModelCreating(modelBuilder);
     }
     
 }
