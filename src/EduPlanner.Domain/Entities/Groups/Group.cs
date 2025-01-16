@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using EduPlanner.Domain.Entities.Reservations;
 using EduPlanner.Domain.Interfaces;
 
 namespace EduPlanner.Domain.Entities.Groups;
@@ -24,5 +25,6 @@ public class Group: IEntity
     public GroupTree? GroupTree { get; set; } //todo
     
     public ICollection<GroupCourse>? GroupCourse { get; set; }
+    public ICollection<Reservation>? ReservationGroup { get; set; }
     
 }
