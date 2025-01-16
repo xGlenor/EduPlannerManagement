@@ -4,13 +4,13 @@
       <BuildDependency Project="src\EduPlanner.DBConverter\EduPlanner.DBConverter.csproj" />
     </Project>
     <Project Path="src\EduPlanner.Application\EduPlanner.Application.csproj" Type="Classic C#" />
+    <Project Path="src\EduPlanner.AtsDbConverter\EduPlanner.AtsDbConverter.csproj" Type="Classic C#" />
     <Project Path="src\EduPlanner.Domain\EduPlanner.Domain.csproj" Type="Classic C#" />
     <Project Path="src\EduPlanner.Infrastructure\EduPlanner.Infrastructure.csproj" Type="Classic C#" />
-    <Project Path="src\EduPlanner.AtsDbConverter\EduPlanner.AtsDbConverter.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path="docker-compose.yml" />
     <File Path=".env" />
+    <File Path="testing-data-ats.sql" />
   </Folder>
-  
 </Solution>
