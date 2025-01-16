@@ -4,23 +4,26 @@ using EduPlanner.Domain.Interfaces;
 namespace EduPlanner.Domain.Entities.Reservations;
 
 [Table("resers")]
-public class Reservation: IEntity
+public class Reservation : IEntity
 {
-    [Column("id")]
+    [Column("id")] 
     public int Id { get; set; }
-    
-    [Column("idReserType")]
+
+    [Column("idReserType")] 
     public int? ReservationTypeId { get; set; }
     public ReservationType? ReservationType { get; set; }
-    
-    [Column("type")]
+
+    [Column("type")] 
     public string Type { get; set; }
-    
-    [Column("descript")]
+
+    [Column("descript")] 
     public string Description { get; set; }
-    
-    [Column("active")]
+
+    [Column("active")] 
     public int Active { get; set; }
-    
-    
+
+    public ICollection<ReservationGroup>? ReservationGroups { get; set; }
+    public ICollection<ReservationRoom>? ReservationRooms { get; set; }
+    public ICollection<ReservationTeacher>? ReservationTeachers { get; set; }
+
 }

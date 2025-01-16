@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using EduPlanner.Domain.Entities.Reservations;
 using EduPlanner.Domain.Interfaces;
 
 namespace EduPlanner.Domain.Entities.Teachers;
@@ -28,5 +29,6 @@ public class Teacher: IEntity
     public TeacherTree? TeacherTree { get; set; }
     
     public ICollection<TeacherCourse>? TeacherCourse { get; set; }
+    public ICollection<ReservationTeacher>? TeacherReservation { get; set; }
     
 }

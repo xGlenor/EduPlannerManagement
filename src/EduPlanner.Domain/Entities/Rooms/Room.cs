@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using EduPlanner.Domain.Entities.Reservations;
 using EduPlanner.Domain.Interfaces;
 
 namespace EduPlanner.Domain.Entities.Rooms;
@@ -22,5 +23,7 @@ public class Room : IEntity
     [Column("id_room_tree")]
     public int? RoomTreeId { get; set; }
     public RoomTree? RoomTree { get; set; }
+    
+    public ICollection<ReservationRoom>? ReservationRoom { get; set; }
     
 }

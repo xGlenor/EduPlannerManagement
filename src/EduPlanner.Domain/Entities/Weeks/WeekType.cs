@@ -12,7 +12,7 @@ public class WeekType: IEntity
     public int Id { get; set; }
     [Column("sShortcut")]
     public string? Shortcut { get; set; }
-    [Column("bShow")]
+    [Column("sDescript")]
     public string? Description { get; set; }
     [Column("bShow")]
     public bool? Show {get; set;}
