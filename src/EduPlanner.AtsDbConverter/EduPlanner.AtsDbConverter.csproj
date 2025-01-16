@@ -5,6 +5,7 @@
         <TargetFramework>net8.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <InvariantGlobalization>true</InvariantGlobalization>
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
@@ -24,6 +25,12 @@
     <ItemGroup>
       <ProjectReference Include="..\EduPlanner.Application\EduPlanner.Application.csproj" />
       <ProjectReference Include="..\EduPlanner.Infrastructure\EduPlanner.Infrastructure.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
