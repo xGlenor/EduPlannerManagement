@@ -3,7 +3,7 @@ using EduPlanner.Domain.Interfaces;
 
 namespace EduPlanner.Domain.Entities.Reservations;
 
-[Table("reset_type")]
+[Table("reser_type")]
 public class ReservationType: IEntity
 {
     [Column("idReserType")]
