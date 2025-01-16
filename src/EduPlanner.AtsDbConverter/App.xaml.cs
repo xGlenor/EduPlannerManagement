@@ -25,8 +25,7 @@ public partial class App : System.Windows.Application
         
         App app = new();
         app.InitializeComponent();
-            
-            
+        
         app.MainWindow = host.Services.GetRequiredService<MainWindow>();
         app.MainWindow.Visibility = Visibility.Visible;
         app.Run();
@@ -39,7 +38,7 @@ public partial class App : System.Windows.Application
             })
             .ConfigureServices((hostContext, services) =>
             {
-                services.AddInfrastructure(hostContext.Configuration);
+
                 //
                 // ADD VIEWS
                 //
@@ -50,7 +49,7 @@ public partial class App : System.Windows.Application
                 //
                 // ADD SERVICES
                 //
-
+                services.AddInfrastructure(hostContext.Configuration);
 
                 services.AddSingleton<Dispatcher>(_ => Current.Dispatcher);
                     
