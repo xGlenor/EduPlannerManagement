@@ -9,10 +9,10 @@ public class ReservationRoom
 {
     [Column("id_room")]
     public int? RoomId { get; set; }
-    public Room Room { get; set; }
+    //public Room Room { get; set; }
     
     [Column("id")]
     public int? ReservationId { get; set; }
-    public Reservation Reservation { get; set; }
+    //public Reservation Reservation { get; set; }
     
 }

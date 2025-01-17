@@ -5,6 +5,7 @@ using EduPlanner.Domain.Entities.Rooms;
 using EduPlanner.Domain.Entities.Teachers;
 using EduPlanner.Domain.Entities.Weeks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EduPlanner.Infrastructure.Database;
 
@@ -39,7 +40,7 @@ public class NewDbContext: DbContext
     {
         modelBuilder.Entity<GroupCourse>()
             .HasKey(cg => new { cg.GroupId, cg.CourseId });
-        
+
         modelBuilder.Entity<CourseTime>()
             .HasKey(ct => new { ct.CourseId, ct.WeekId, ct.WeekTypeId });
         
@@ -64,5 +65,8 @@ public class NewDbContext: DbContext
         
         base.OnModelCreating(modelBuilder);
     }
+    
+    
+    
     
 }

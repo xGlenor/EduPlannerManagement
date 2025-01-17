@@ -14,7 +14,7 @@ public class Week: IEntity
     [Column("sDescript")]
     public string? Description { get; set; }
     
-    public ICollection<WeekWeekType>? WeekWeekTypes { get; set; }
-    public ICollection<CourseTime>? CourseTimes { get; set; }
+    //public ICollection<WeekWeekType>? WeekWeekTypes { get; set; }
+    //public ICollection<CourseTime>? CourseTimes { get; set; }
     
 }

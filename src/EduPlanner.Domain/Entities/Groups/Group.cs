@@ -22,9 +22,9 @@ public class Group: IEntity
 
     [Column("id_group_tree")]
     public int? GroupTreeId { get; set; }
-    public GroupTree? GroupTree { get; set; } //todo
+    //public GroupTree? GroupTree { get; set; } //todo
     
-    public ICollection<GroupCourse>? GroupCourse { get; set; }
-    public ICollection<Reservation>? ReservationGroup { get; set; }
+    //public ICollection<GroupCourse>? GroupCourse { get; set; }
+    //public ICollection<Reservation>? ReservationGroup { get; set; }
     
 }

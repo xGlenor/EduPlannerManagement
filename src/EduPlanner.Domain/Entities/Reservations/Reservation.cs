@@ -11,7 +11,7 @@ public class Reservation : IEntity
 
     [Column("idReserType")] 
     public int? ReservationTypeId { get; set; }
-    public ReservationType? ReservationType { get; set; }
+    //public ReservationType? ReservationType { get; set; }
 
     [Column("type")] 
     public string? Type { get; set; }
@@ -22,8 +22,8 @@ public class Reservation : IEntity
     [Column("active")] 
     public int? Active { get; set; }
 
-    public ICollection<ReservationGroup>? ReservationGroups { get; set; }
-    public ICollection<ReservationRoom>? ReservationRooms { get; set; }
-    public ICollection<ReservationTeacher>? ReservationTeachers { get; set; }
+    //public ICollection<ReservationGroup>? ReservationGroups { get; set; }
+    //public ICollection<ReservationRoom>? ReservationRooms { get; set; }
+    //public ICollection<ReservationTeacher>? ReservationTeachers { get; set; }
 
 }

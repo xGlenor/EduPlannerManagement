@@ -20,10 +20,10 @@ public class Course: IEntity
     [Column("comment")]
     public string? Comment { get; set; }
     
-    public ICollection<GroupCourse>? GroupCourse { get; set; }
-    public ICollection<TeacherCourse>? TeacherCourse { get; set; }
-    public ICollection<RoomCourse>? RoomCourse { get; set; }
+    //public ICollection<GroupCourse>? GroupCourse { get; set; }
+    //public ICollection<TeacherCourse>? TeacherCourse { get; set; }
+    //public ICollection<RoomCourse>? RoomCourse { get; set; }
     
-    public ICollection<CourseTime>? CourseTimes { get; set; }
+    //public ICollection<CourseTime>? CourseTimes { get; set; }
     
 }
