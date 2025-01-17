@@ -42,7 +42,6 @@ public class ConvertService: IConvertService
     
     public void Convert()
     {
-        _newDbContext.Database.ExecuteSqlRaw("SET FOREIGN_KEY_CHECKS = 0;");
         
         Transfer<Course>(_OldDbContext.Courses.ToList());
         Transfer<ReservationType>(_OldDbContext.ReservationTypes.ToList());
@@ -50,9 +49,7 @@ public class ConvertService: IConvertService
         Transfer<RoomTree>(_OldDbContext.RoomTrees.ToList());
         Transfer<TeacherTree>(_OldDbContext.TeacherTrees.ToList());
         Transfer<Reservation>(_OldDbContext.Reservations.ToList());
-        Transfer<Group>(_OldDbContext.Groups.ToList());
-        Transfer<GroupCourse>(_OldDbContext.GroupCourses.ToList());
-        Transfer<ReservationGroup>(_OldDbContext.ReservationGroups.ToList());
+
         Transfer<Week>(_OldDbContext.Weeks.ToList());
         Transfer<WeekType>(_OldDbContext.WeekTypes.ToList());
         Transfer<WeekWeekType>(_OldDbContext.WeekWeekTypes.ToList());
@@ -63,9 +60,10 @@ public class ConvertService: IConvertService
         Transfer<ReservationRoom>(_OldDbContext.ReservationRooms.ToList());
         Transfer<ReservationTeacher>(_OldDbContext.ReservationTeachers.ToList());
         Transfer<CourseTime>(_OldDbContext.CourseTimes.ToList());
+        Transfer<Group>(_OldDbContext.Groups.ToList());
+        Transfer<GroupCourse>(_OldDbContext.GroupCourses.ToList());
+        Transfer<ReservationGroup>(_OldDbContext.ReservationGroups.ToList());
         
-        
-        _newDbContext.Database.ExecuteSqlRaw("SET FOREIGN_KEY_CHECKS = 1;");
         
     }
 
