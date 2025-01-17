@@ -1,6 +1,11 @@
-﻿using System.Windows;
+﻿using System.Resources;
+using System.Windows;
 using System.Windows.Controls;
+using EduPlanner.AtsDbConverter.Services;
+using EduPlanner.Domain.Entities.Courses;
 using EduPlanner.Infrastructure.Database;
+using EduPlanner.Infrastructure.Database.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EduPlanner.AtsDbConverter.Views;
@@ -22,16 +27,9 @@ public partial class ConverterView : UserControl
     
     private void ConvertDatabase(object sender, RoutedEventArgs e)
     {
-        //var converterService = _serviceProvider.GetService<ConverterService>();
+        var converter = _serviceProvider.GetRequiredService<IConvertService>();
         //converterService.Convert();
-
-        var dbContext = _serviceProvider.GetRequiredService<OldDbContext>();
-        var courses = dbContext.Courses.Select(c => new {c.Name, c.Shortcut}).ToList();
-
-        foreach (var item in courses)
-        {
-            AddItem($"{item.Name} - {item.Shortcut}");
-        }
-
+        converter.Convert();
+        
     }
 }
