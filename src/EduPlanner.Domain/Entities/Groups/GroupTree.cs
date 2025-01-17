@@ -15,10 +15,10 @@ public class GroupTree: IEntity
     
     [Column("parent")]
     public int? ParentId { get; set; }
-    public GroupTree? Parent { get; set; }
+   //public GroupTree? Parent { get; set; }
     
-    public ICollection<GroupTree>? Children { get; set; }
-    public ICollection<Group>? Groups { get; set; }
+    //public ICollection<GroupTree>? Children { get; set; }
+    //public ICollection<Group>? Groups { get; set; }
     
     public static ICollection<string> OldFields = new List<string>()
     {
