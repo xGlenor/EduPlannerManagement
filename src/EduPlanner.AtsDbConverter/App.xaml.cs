@@ -2,9 +2,11 @@
 using System.Data;
 using System.Windows;
 using System.Windows.Threading;
+using EduPlanner.Application.Common.Persistence;
+using EduPlanner.AtsDbConverter.Services;
 using EduPlanner.AtsDbConverter.Views;
 using EduPlanner.Infrastructure;
-using EduPlanner.Infrastructure.Data;
+using EduPlanner.Infrastructure.Database.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,9 +52,11 @@ public partial class App : System.Windows.Application
                 // ADD SERVICES
                 //
                 services.AddInfrastructure(hostContext.Configuration);
-
                 services.AddSingleton<Dispatcher>(_ => Current.Dispatcher);
-                    
+                services.AddSingleton<IConvertService, ConvertService>();
+                
+                services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
                 /*services.AddDbContext<ApplicationDbContext>(opt =>
                 {
                     var connectionString = hostContext.Configuration.GetConnectionString("Default");
