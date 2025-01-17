@@ -14,6 +14,11 @@ public partial class MainView : UserControl
     {
         _serviceProvider = serviceProvider;
         InitializeComponent();
+        DbHost.Text = "localhost";
+        DbPort.Text = "3306";
+        DbLogin.Text = "root";
+        DbPassword.Password = "root123";
+        DbName.Text = "ats";
     }
 
     private void CheckConnection(object sender, RoutedEventArgs e)

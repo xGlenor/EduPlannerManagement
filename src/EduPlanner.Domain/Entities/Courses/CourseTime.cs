@@ -21,13 +21,12 @@ public class CourseTime
     public WeekType WeekType { get; set; }
     
     [Column("idRoom")]
-    public int RoomId { get; set; }
-    public Room Room { get; set; }
+    public int? RoomId { get; set; }
+    public Room? Room { get; set; }
     
     [Column("dtStart")]
     public DateTime? StartDate { get; set; }
     [Column("dtStop")]
     public DateTime? EndDate { get; set; }
-    
     
 }

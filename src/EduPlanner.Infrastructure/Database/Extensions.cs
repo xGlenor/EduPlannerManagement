@@ -1,10 +1,8 @@
-﻿using EduPlanner.Infrastructure.Database;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EduPlanner.Infrastructure.Data;
+namespace EduPlanner.Infrastructure.Database;
 
 public static class Extensions
 {
@@ -12,20 +10,12 @@ public static class Extensions
     {
         services.Configure<DatabaseOptions>(configuration.GetSection("database"));
         
-        
         var databaseOptions = configuration.GetRequiredSection("database")
             .Get<DatabaseOptions>() ?? throw new NullReferenceException();
         
-        
-        Console.WriteLine($"DatabaseOptions:\n  New -> {databaseOptions.NewConnectionString}\n  Old -> {databaseOptions.OldConnectionString}");
+        Console.WriteLine($"DatabaseOptions:\nNew -> {databaseOptions.ConnectionString}");
         services.AddDbContext<NewDbContext>(x => 
-            x.UseMySql(databaseOptions.NewConnectionString, ServerVersion.AutoDetect(databaseOptions.NewConnectionString)));
-        
-        
-        services.AddDbContextFactory<OldDbContext>(x => 
-            x.UseMySql(databaseOptions.OldConnectionString, ServerVersion.AutoDetect(databaseOptions.OldConnectionString)));
-        
-        
+            x.UseMySql(databaseOptions.ConnectionString, ServerVersion.AutoDetect(databaseOptions.ConnectionString)));
         
         return services;
     }

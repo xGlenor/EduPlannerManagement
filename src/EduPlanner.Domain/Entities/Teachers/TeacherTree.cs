@@ -15,7 +15,7 @@ public class TeacherTree: IEntity
     public TeacherTree? Parent { get; set; }
     
     [Column("bShowPlan")]
-    public bool ShowPlan { get; set; }
+    public bool? ShowPlan { get; set; }
     
     public ICollection<TeacherTree>? Children { get; set; }
     public ICollection<Teacher>? Teachers { get; set; }

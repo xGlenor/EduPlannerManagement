@@ -14,13 +14,13 @@ public class Reservation : IEntity
     public ReservationType? ReservationType { get; set; }
 
     [Column("type")] 
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
     [Column("descript")] 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [Column("active")] 
-    public int Active { get; set; }
+    public int? Active { get; set; }
 
     public ICollection<ReservationGroup>? ReservationGroups { get; set; }
     public ICollection<ReservationRoom>? ReservationRooms { get; set; }

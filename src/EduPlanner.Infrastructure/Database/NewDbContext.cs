@@ -33,7 +33,6 @@ public class NewDbContext: DbContext
     public DbSet<ReservationRoom> ReservationRooms { get; set; }
     public DbSet<ReservationTeacher> ReservationTeachers { get; set; }
     public DbSet<ReservationType> ReservationTypes { get; set; }
-    
     public DbSet<CourseTime> CourseTimes { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

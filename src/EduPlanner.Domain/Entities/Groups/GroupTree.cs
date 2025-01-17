@@ -11,7 +11,7 @@ public class GroupTree: IEntity
     [Column("name")]
     public string? Name { get; set; }
     [Column("bShowPlan")]
-    public bool ShowPlan { get; set; }
+    public bool? ShowPlan { get; set; }
     
     [Column("parent")]
     public int? ParentId { get; set; }

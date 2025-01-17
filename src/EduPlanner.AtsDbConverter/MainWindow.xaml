@@ -11,7 +11,7 @@
         <TabControl x:Name="TabControl"  TabStripPlacement="Left" materialDesign:ColorZoneAssist.Mode="PrimaryDark" 
                     SelectionChanged="TabControl_SelectionChanged" >
             <TabItem x:Name="DatabaseConfiguration" Header="Konfiguracja" />
-            <TabItem x:Name="ImportConfiguration" Header="Import" />
+            <TabItem x:Name="ImportConfiguration" Header="Import" IsEnabled="False"/>
         </TabControl>
     </Grid>
 </Window>

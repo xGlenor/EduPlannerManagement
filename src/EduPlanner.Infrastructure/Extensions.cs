@@ -1,4 +1,4 @@
-﻿using EduPlanner.Infrastructure.Data;
+﻿using EduPlanner.Infrastructure.Database;
 using Keycloak.AuthServices.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +12,6 @@ public static class Extensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDatabase(configuration);
-        
-        
         
         return services;
     }

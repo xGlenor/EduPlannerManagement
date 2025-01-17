@@ -9,6 +9,6 @@ public class ReservationType: IEntity
     [Column("idReserType")]
     public int Id { get; set; }
     [Column("sDescript")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
     
 }
