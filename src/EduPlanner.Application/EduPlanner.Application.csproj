@@ -13,5 +13,9 @@
     <ItemGroup>
       <ProjectReference Include="..\EduPlanner.Domain\EduPlanner.Domain.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Tree\" />
+    </ItemGroup>
 
 </Project>
