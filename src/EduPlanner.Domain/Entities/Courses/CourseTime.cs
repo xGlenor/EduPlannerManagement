@@ -24,9 +24,23 @@ public class CourseTime
     public int? RoomId { get; set; }
     //public Room? Room { get; set; }
     
+    [Column("minutesStart")]
+    public int MinutesStart { get; set; }
+    
+    [Column("minutesEnd")]
+    public int MinutesEnd { get; set; }
+    
     [Column("dtStart")]
-    public TimeSpan? StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
     [Column("dtStop")]
-    public TimeSpan? EndDate { get; set; }
+    public DateTime? EndDate { get; set; }
+    
+    public override string ToString()
+    {
+        return $"CourseTime: [CourseId: {CourseId}, WeekId: {WeekId}, WeekTypeId: {WeekTypeId}, MinutesStart {MinutesStart}, MinutesStop = {MinutesEnd} " +
+               $"RoomId: {(RoomId.HasValue ? RoomId.ToString() : "null")}, " +
+               $"StartDate: {(StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd HH:mm:ss") : "null")}, " +
+               $"EndDate: {(EndDate.HasValue ? EndDate.Value.ToString("yyyy-MM-dd HH:mm:ss") : "null")}]";
+    }
     
 }
