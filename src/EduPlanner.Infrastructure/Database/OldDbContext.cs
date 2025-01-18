@@ -34,14 +34,14 @@ public class OldDbContext: DbContext
     public DbSet<ReservationTeacher> ReservationTeachers { get; set; }
     public DbSet<ReservationType> ReservationTypes { get; set; }
     
-    public DbSet<CourseTime> CourseTimes { get; set; }
+    public DbSet<TimeOld> TimeOld { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<GroupCourse>()
             .HasKey(cg => new { cg.GroupId, cg.CourseId });
         
-        modelBuilder.Entity<CourseTime>()
+        modelBuilder.Entity<TimeOld>()
             .HasKey(ct => new { ct.CourseId, ct.WeekId, ct.WeekTypeId });
         
         modelBuilder.Entity<RoomCourse>()
