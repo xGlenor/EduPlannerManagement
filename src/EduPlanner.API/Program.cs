@@ -20,6 +20,9 @@ var apiGroup = app.MapGroup("api");
 apiGroup.MapGroups();
 apiGroup.MapRooms();
 apiGroup.MapTeachers();
+apiGroup.MapColors();
+apiGroup.MapWeeks();
+apiGroup.MapWeekTypes();
 
 app.UseHttpsRedirection();
 

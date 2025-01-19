@@ -1,3 +1,3 @@
 namespace EduPlanner.Application.Rooms;
 
-public record RoomDTO(int Id, string Name);
+public record RoomDTO(int Id, string Nr, string Type);

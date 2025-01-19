@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using EduPlanner.Application.Common;
 using EduPlanner.Application.Teachers;
+using EduPlanner.Application.Tree;
 
 namespace EduPlanner.API.Endpoints;
 
@@ -18,6 +19,12 @@ public static class TeachersEndpointExtensions
             return Results.Ok(nodes);
         });
         
+        group.MapGet("times", [ProducesResponseType(typeof(TeacherTimesDTO), StatusCodes.Status200OK)] async (int teacherId, int weekId, int weekTypeId, CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        {
+            var query = new GetTeacherTimes(teacherId, weekId, weekTypeId);
+            var courseTimes = await sender.Send(query, cancellationToken);
+            return Results.Ok(courseTimes);
+        });
         return endpoints;
     }
 }
