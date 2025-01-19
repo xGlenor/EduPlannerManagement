@@ -1,8 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using EduPlanner.Application.Common;
-using EduPlanner.Application.Groups;
 using EduPlanner.Application.Tree;
+using EduPlanner.Application.Groups;
 
 namespace EduPlanner.API.Endpoints;
 
@@ -12,6 +11,13 @@ public static class GroupsEndpointExtensions
     {
         var group = endpoints.MapGroup("groups");
 
+        group.MapGet("/search", [ProducesResponseType(typeof(IEnumerable<GroupDTO>), StatusCodes.Status200OK)] async (string name, CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        {
+            var query = new GetGroups(name);
+            var courseTimes = await sender.Send(query, cancellationToken);
+            return Results.Ok(courseTimes);
+        });
+        
         group.MapGet("tree", [ProducesResponseType(typeof(TreeNodesDTO<GroupDTO>), StatusCodes.Status200OK)] async (int parentId, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
             var query = new GetGroupTreeNodes(parentId);

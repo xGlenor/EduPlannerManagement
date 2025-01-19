@@ -1,6 +1,6 @@
-using EduPlanner.Application.Colors;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using EduPlanner.Application.Colors;
 
 namespace EduPlanner.API.Endpoints;
 

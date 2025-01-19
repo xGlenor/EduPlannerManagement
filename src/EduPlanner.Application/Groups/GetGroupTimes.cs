@@ -1,5 +1,4 @@
 using MediatR;
-using EduPlanner.Application.CourseTimes;
 
 namespace EduPlanner.Application.Groups;
 

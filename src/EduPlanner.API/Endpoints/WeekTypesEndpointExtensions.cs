@@ -1,8 +1,6 @@
-using EduPlanner.Application.Colors;
-using EduPlanner.Application.Weeks;
-using EduPlanner.Application.WeekTypes;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using EduPlanner.Application.WeekTypes;
 
 namespace EduPlanner.API.Endpoints;
 
