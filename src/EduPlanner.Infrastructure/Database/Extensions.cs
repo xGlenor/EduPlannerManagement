@@ -13,7 +13,6 @@ public static class Extensions
         var databaseOptions = configuration.GetRequiredSection("database")
             .Get<DatabaseOptions>() ?? throw new NullReferenceException();
         
-        Console.WriteLine($"DatabaseOptions:\nNew -> {databaseOptions.ConnectionString}");
         services.AddDbContext<NewDbContext>(x => 
             x.UseMySql(databaseOptions.ConnectionString, ServerVersion.AutoDetect(databaseOptions.ConnectionString)));
         

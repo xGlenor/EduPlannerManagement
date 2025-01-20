@@ -8,10 +8,9 @@ public class GroupCourse
 {
     [Column("id_group")]
     public int GroupId { get; set; }
-    //public Group Group { get; set; }
     
     [Column("id")]
     public int CourseId { get; set; }
-    //public Course Course { get; set; }
+
     
 }

@@ -26,9 +26,5 @@ public class Teacher: IEntity
     
     [Column("id_cond_tree")]
     public int? TeacherTreeId { get; set; }
-    //public TeacherTree? TeacherTree { get; set; }
-    
-    //public ICollection<TeacherCourse>? TeacherCourse { get; set; }
-    //public ICollection<ReservationTeacher>? TeacherReservation { get; set; }
     
 }

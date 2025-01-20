@@ -12,12 +12,8 @@ public class TeacherTree: IEntity
     public string Name { get; set; }
     [Column("parent")]
     public int? ParentId { get; set; }
-    //public TeacherTree? Parent { get; set; }
     
     [Column("bShowPlan")]
     public bool? ShowPlan { get; set; }
-    
-    //public ICollection<TeacherTree>? Children { get; set; }
-    //public ICollection<Teacher>? Teachers { get; set; }
     
 }
