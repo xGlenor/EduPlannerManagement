@@ -1,0 +1,30 @@
+{
+  "main": {
+    "_comment": "Tutaj możesz ustawić aktulny rok akademicki oraz semestr",
+    "year": "2024/2025",
+    "semester": "Semestr Zimowy"
+  },
+  "_commentLinks": "Tutaj możesz dodać linki pojawiające się na stronie, ikony możesz znaleźć na stronie https://react-icons.github.io/react-icons/, możesz używać tylko tych, które mają przedrostek fa6",
+  "links": {
+    "facebook": {
+      "index": 1,
+      "url": "https://www.facebook.com/uniwersytetbb",
+      "icon": "FaDiscord"
+    },
+    "discord": {
+      "index": 2,
+      "url": "https://discord.gg/7X3PWuRsWm",
+      "icon": "FaFacebookF"
+    },
+    "linkedIn": {
+      "index": 3,
+      "url": "https://www.linkedin.com/school/uniwersytet-bielsko-bialski",
+      "icon": "FaLinkedinIn"
+    },
+    "youtube": {
+      "index": 4,
+      "url": "https://www.youtube.com/@UniwersytetBielskoBialski",
+      "icon": "FaYoutube"
+    }
+  }
+}
