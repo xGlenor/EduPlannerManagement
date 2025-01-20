@@ -1,0 +1,32 @@
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using EduPlanner.Application.Weeks;
+
+namespace EduPlanner.API.Endpoints;
+
+public static class WeeksEndpointExtensions
+{
+    public static IEndpointRouteBuilder MapWeeks(this IEndpointRouteBuilder endpoints)
+    {
+        var group = endpoints.MapGroup("weeks");
+
+        group.MapGet("", [ProducesResponseType(typeof(IEnumerable<WeekDTO>), StatusCodes.Status200OK)] async (CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        {
+            var query = new GetWeeks();
+            var result = await sender.Send(query, cancellationToken);
+            return Results.Ok(result);
+        });
+        
+        group.MapGet("{date:datetime}", [ProducesResponseType(typeof(WeekDTO), StatusCodes.Status200OK)] [ProducesResponseType(StatusCodes.Status404NotFound)] async (DateTime date, CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        {
+            var query = new GetWeekForDate(date);
+            var result = await sender.Send(query, cancellationToken);
+            if (result is null)
+                return Results.NotFound();
+            
+            return Results.Ok(result);
+        });
+        
+        return endpoints;
+    }
+}

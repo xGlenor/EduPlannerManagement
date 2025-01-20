@@ -1,12 +1,12 @@
 using MediatR;
+using EduPlanner.Application.Tree;
 using Microsoft.EntityFrameworkCore;
-using EduPlanner.Application.Common;
 using EduPlanner.Application.Teachers;
 using EduPlanner.Domain.Entities.Teachers;
 
-namespace EduPlanner.Infrastructure.Database.Handlers.Courses;
+namespace EduPlanner.Infrastructure.Database.Handlers.Teachers;
 
-public class GetTeacherTreeNodesHandler(NewDbContext dbContext)
+internal class GetTeacherTreeNodesHandler(NewDbContext dbContext)
     : IRequestHandler<GetTeacherTreeNodes, TreeNodesDTO<TeacherDTO>>
 {
     public async Task<TreeNodesDTO<TeacherDTO>> Handle(GetTeacherTreeNodes request, CancellationToken cancellationToken)
@@ -15,20 +15,21 @@ public class GetTeacherTreeNodesHandler(NewDbContext dbContext)
             .TeacherTrees
             .Where(x => x.ParentId == request.ParentId)
             .ToListAsync(cancellationToken: cancellationToken);
+        
 
         var nodes = teacherNodes
-            .Select(x =>
-            {
-                var teachers = dbContext
-                    .Teachers
-                    .Where(y => y.TeacherTreeId == x.Id)
-                    .ToArray();
-                return new TreeNodeDTO<TeacherDTO>(x.Id, x.Name, x.ShowPlan, teachers.Select(ToTeacherDTO));
-            })
+            .Select(x => 
+                new TreeNodeDTO<TeacherDTO>(
+                    x.Id, 
+                    x.Name, 
+                    x.ShowPlan, 
+                    dbContext.Teachers.Where(y=>y.TeacherTreeId == x.Id).AsEnumerable().Select(ToDTO)
+                )
+            )
             .ToList();
-
+        
          return new TreeNodesDTO<TeacherDTO>(nodes);
     }
 
-    private TeacherDTO ToTeacherDTO(Teacher teacher) => new TeacherDTO(teacher.Id, teacher.Name, teacher.Surname);
+    private TeacherDTO ToDTO(Teacher teacher) => new TeacherDTO(teacher.Id, teacher.Name, teacher.Surname);
 }

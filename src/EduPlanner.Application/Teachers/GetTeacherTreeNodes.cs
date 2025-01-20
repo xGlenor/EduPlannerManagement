@@ -1,5 +1,5 @@
 using MediatR;
-using EduPlanner.Application.Common;
+using EduPlanner.Application.Tree;
 
 namespace EduPlanner.Application.Teachers;
 
