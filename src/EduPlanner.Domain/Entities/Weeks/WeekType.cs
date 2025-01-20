@@ -16,9 +16,4 @@ public class WeekType: IEntity
     public string? Description { get; set; }
     [Column("bShow")]
     public bool? Show {get; set;}
-    
-    //public ICollection<WeekWeekType>? WeekWeekTypes { get; set; }
-    //public ICollection<CourseTime>? CourseTimes { get; set; }
-    
-
 }

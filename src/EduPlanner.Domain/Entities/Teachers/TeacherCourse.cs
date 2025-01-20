@@ -8,11 +8,9 @@ public class TeacherCourse
 {
     [Column("id_cond")]
     public int TeacherId { get; set; }
-    //public Teacher Teacher { get; set; }
     
     [Column("id")]
     public int CourseId { get; set; }
-    //public Course Course { get; set; }
     
     [Column("remarks")]
     public string? Remarks { get; set; }

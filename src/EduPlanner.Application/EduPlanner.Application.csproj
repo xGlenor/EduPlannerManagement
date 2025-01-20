@@ -13,5 +13,5 @@
     <ItemGroup>
       <ProjectReference Include="..\EduPlanner.Domain\EduPlanner.Domain.csproj" />
     </ItemGroup>
-
+    
 </Project>
