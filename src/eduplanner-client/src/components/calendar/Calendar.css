@@ -1,0 +1,46 @@
+header.sx__calendar-header{
+    display: none ;
+}
+
+.sx-react-calendar-wrapper {
+    height: 800px;
+}
+
+/*.sx__week-grid__hour{
+    height: 4rem !important;
+}*/
+
+.sx__week-grid__date-axis{
+    @apply bg-primary-dark;
+}
+
+.sx__week-grid__date-number,
+.sx__week-grid__day-name{
+    @apply text-white;
+}
+
+.sx__week-grid__date--is-today .sx__week-grid__date-number {
+    @apply bg-primary-light;
+}
+.sx__week-grid__date--is-today .sx__week-grid__day-name{
+    @apply text-white;
+}
+
+:root {
+    --sx-color-primary: #476cab;
+    --sx-color-on-primary: #fff;
+    --sx-color-primary-container: #17376e;
+    --sx-color-on-primary-container: white;
+    --sx-color-secondary: #625b71;
+    --sx-color-on-secondary: #fff;
+    --sx-color-secondary-container: #e8def8;
+    --sx-color-on-secondary-container: #1e192b;
+    --sx-color-tertiary: #7d5260;
+    --sx-color-on-tertiary: #fff;
+    --sx-color-tertiary-container: #ffd8e4;
+
+    --sx-color-surface-tint: #6750a4;
+
+
+}
+

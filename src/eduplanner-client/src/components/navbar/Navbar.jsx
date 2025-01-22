@@ -6,12 +6,15 @@ import {Link} from "react-router";
 import DynamicIcon from "../../lib/DynamicIcon.jsx";
 import * as PropTypes from "prop-types";
 import {Component} from "react";
+import Search from "../Search.jsx";
 
 class Navbar extends Component {
+  
   render() {
     let {isOpen, setIsOpen} = this.props;
-    
     const links = Object.entries(settings.links);
+    
+
     
     return (
       <div className="h-20 shadow-xl">
@@ -23,11 +26,7 @@ class Navbar extends Component {
             <p className="hidden lg:block">Rok: {settings.main.year} | {settings.main.semester}</p>
           </div>
           <div className="flex gap-8">
-            <div className="flex items-center rounded-2xl bg-ubb-white gap-3 px-4 py-2">
-              <FaSearch className="text-ubb-gray text-lg block float-left cursor-pointer"/>
-              <input type={"search"} className="bg-transparent outline-none w-auto text-ubb-gray"
-                     placeholder={"Szukaj..."}/>
-            </div>
+            <Search />
             <div className=" items-center gap-4 hidden lg:flex">
               {links.map((link) => {
                 return (

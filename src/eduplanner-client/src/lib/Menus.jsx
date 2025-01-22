@@ -4,9 +4,9 @@ export const Menus = [
   {id: 1, title: "Plan Zajęć", link: "/", Icon: FaCalendarAlt,
     submenu: true,
     items: [
-      {id: 2, title: "Grupy", link: "/groups", Icon: FaCircle},
-      {id: 3, title: "Nauczyciele", link: "/teachers", Icon: FaCircle},
-      {id: 4, title: "Sale", link: "/rooms", Icon: FaCircle}
+      {id: 2, title: "Grupy", link: "/groupstree", Icon: FaCircle},
+      {id: 3, title: "Nauczyciele", link: "/teacherstree", Icon: FaCircle},
+      {id: 4, title: "Sale", link: "/roomstree", Icon: FaCircle}
     ]
   },
   {id: 5, title: "Strona Główna", link: "https://ubb.edu.pl/", Icon: FaHome},
