@@ -10,6 +10,20 @@ const Search = () => {
   const [groups, setGroups] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [rooms, setRooms] = useState([]);
+  const [week, setWeek] = useState(0);
+  
+  useEffect(() => {
+    const getWeekId = () => {
+      const date = new Date();
+      const formattedDAte = `${date.getFullYear()}.${date.getMonth() +1}.${date.getDate()}`;
+      const response = ApiService.getCurrentWeek(formattedDAte);
+      response.then(data => {
+        setWeek(data.id);
+      });
+    }
+    getWeekId()
+  }, []);
+  
   
   useEffect( () => {
     const fetchGroups = async () => {
@@ -62,10 +76,23 @@ const Search = () => {
           placeholder={"Szukaj..."}/>
       </div>
       {(groups.length > 0 || teachers.length > 0 || rooms.length > 0) &&  (
-        <div className="bg-primary-light absolute flex flex-col items-start p-2 w-full">
+        <div className="bg-primary-light absolute mt-5 flex flex-col items-start p-2 w-full max-h-72 overflow-y-visible overflow-auto z-50">
+          
           {groups && groups.map((group) => {
             return (
-              <Link to={`/group/${group.id}`} key={group.id}>{group.shortcut}</Link>
+              <Link className="p-1 text-black hover:text-gray-600" to={`/group/${group.id}/week/${week}`} key={group.id}>{group.shortcut}</Link>
+            )
+          })}
+          
+          {teachers && teachers.map((teacher) => {
+            return (
+              <Link className="p-1 text-black hover:text-gray-600" to={`/teacher/${teacher.id}/week/${week}`} key={teacher.id}>{`${teacher.name} ${teacher.surname}`}</Link>
+            )
+          })}
+          
+          {rooms && rooms.map((room) => {
+            return (
+              <Link className="p-1 text-black hover:text-gray-600" to={`/room/${room.id}/week/${week}`} key={room.id}>{room.nr}</Link>
             )
           })}
         </div>
