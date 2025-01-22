@@ -27,6 +27,17 @@ public static class WeeksEndpointExtensions
             return Results.Ok(result);
         });
         
+        group.MapGet("{id:int}", [ProducesResponseType(typeof(WeekDTO), StatusCodes.Status200OK)] [ProducesResponseType(StatusCodes.Status404NotFound)] async (int id, CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        {
+            var query = new GetWeekForId(id);
+            var result = await sender.Send(query, cancellationToken);
+            if (result is null)
+                return Results.NotFound();
+            
+            return Results.Ok(result);
+        });
+        
+        
         return endpoints;
     }
 }
