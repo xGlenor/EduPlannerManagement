@@ -17,11 +17,22 @@ services:
       MYSQL_ROOT_PASSWORD: root123
       MYSQL_DATABASE: atsNew
     ports:
-      - "3306:3306"
+      - "3307:3306"
     networks:
       - edunetwork
     volumes:
       - mariadb-data:/var/lib/mariadb/data
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    environment:
+
+      PMA_HOST: eduplanner-mariadb
+      MYSQL_ROOT_PASSWORD: root123
+    networks:
+      - edunetwork
 
 volumes:
   mariadb-data:
