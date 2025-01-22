@@ -64,7 +64,9 @@ const TeacherView = () => {
       
     })
   }
-
+  useEffect(() => {
+    setEvents([]);
+  }, [typeId]);
   useEffect(() => {
 
     fetchData(1)

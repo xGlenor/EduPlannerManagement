@@ -64,20 +64,14 @@ const TeacherView = () => {
       
     })
   }
-
   useEffect(() => {
-
-
+    setEvents([]);
+  }, [typeId]);
+  useEffect(() => {
     fetchData(2);
-    
     fetchData(3);
     fetchData(4);
-    
-    
-
-    
     if(date) controls.setDate(date)
-    
   }, [weekId]);
   
   useEffect(() => {

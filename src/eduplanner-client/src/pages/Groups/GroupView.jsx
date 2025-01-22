@@ -27,9 +27,13 @@ const GroupView = () => {
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
 
+  useEffect(() => {
+    setEvents([]);
+  }, [typeId]);
 
   useEffect(() => {
     const fetchData = async (id) => {
+      
       const response = ApiService.getGroupsTimes(typeId, weekId, id);
       const courses = []
       response.then((response) => {
@@ -72,7 +76,7 @@ const GroupView = () => {
     
     if(date) controls.setDate(date)
     
-  }, [weekId]);
+  }, [weekId, typeId]);
   
   useEffect(() => {
     const fetchWeek = async () => {
