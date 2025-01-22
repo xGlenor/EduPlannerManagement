@@ -49,6 +49,14 @@ internal abstract class GetTimesHandlerBase(NewDbContext dbContext)
             .AsEnumerable()
             .Select(ToDTO);
     }
+    protected IEnumerable<RoomDTO> GetRoomsFor(RoomCourse roomCourse)
+    {
+        return dbContext
+            .Rooms
+            .Where(y => y.Id == roomCourse.RoomId)
+            .AsEnumerable()
+            .Select(ToDTO);
+    }
 
     protected IEnumerable<RoomDTO> GetRoomsFor(Reservation reservation)
     {

@@ -18,22 +18,27 @@ internal class GetTeacherTimesHandler(NewDbContext dbContext): GetTimesHandlerBa
     
     private async Task<IEnumerable<CourseTimeDTO>> GetCourseTimes(int teacherId, int weekId, int weekTypeId)
     {
+        
         var times = await (
             from courseTime in dbContext.CourseTimes
             join course in dbContext.Courses on courseTime.CourseId equals course.Id
             join groupCourse in dbContext.GroupCourses on courseTime.CourseId equals groupCourse.CourseId
+            join weeks in dbContext.Weeks on weekId equals weeks.Id
+            join rooms in dbContext.RoomCourses on courseTime.CourseId equals rooms.CourseId
             join teacherCourse in dbContext.TeacherCourses on courseTime.CourseId equals teacherCourse.CourseId
             where teacherCourse.TeacherId == teacherId
                   && ((courseTime.WeekTypeId == 0 && courseTime.WeekId == weekId) 
                   || (courseTime.WeekId == 0 && courseTime.WeekTypeId == weekTypeId))
             select new
             {
+                Week = weeks,
                 CourseTime = courseTime,
                 Course = course,
                 GroupCourse = groupCourse
             }).ToListAsync();
 
         return times
+                .DistinctBy(x => x.GroupCourse.CourseId)
             .Select(x =>
                 new CourseTimeDTO(
                     x.CourseTime.CourseId,
@@ -43,7 +48,7 @@ internal class GetTeacherTimesHandler(NewDbContext dbContext): GetTimesHandlerBa
                     ToDTO(x.Course),
                     x.CourseTime.MinutesStart,
                     x.CourseTime.MinutesEnd,
-                    x.CourseTime.StartDate,
+                    x.Week.StartWeek,
                     x.CourseTime.EndDate
                 )
             ).ToArray();

@@ -23,7 +23,8 @@ internal class GetRoomTreeNodesHandler(NewDbContext dbContext)
                     x.Id, 
                     x.Name, 
                     x.ShowPlan, 
-                    dbContext.Rooms.Where(y=>y.RoomTreeId == x.Id).AsEnumerable().Select(ToDTO)
+                    dbContext.Rooms.Where(y=>y.RoomTreeId == x.Id).AsEnumerable().Select(ToDTO),
+                    dbContext.RoomTrees.Any(z => z.ParentId == x.Id)
                 )
             )
             .ToList();

@@ -23,7 +23,8 @@ internal class GetGroupTreeNodesHandler(NewDbContext dbContext)
                     x.Id, 
                     x.Name, 
                     x.ShowPlan, 
-                    dbContext.Groups.Where(y=>y.GroupTreeId == x.Id).AsEnumerable().Select(ToDTO)
+                    dbContext.Groups.Where(y=>y.GroupTreeId == x.Id).AsEnumerable().Select(ToDTO),
+                    dbContext.GroupTrees.Any(z => z.ParentId == x.Id)
                 )
             )
             .ToList();

@@ -16,14 +16,15 @@ internal class GetTeacherTreeNodesHandler(NewDbContext dbContext)
             .Where(x => x.ParentId == request.ParentId)
             .ToListAsync(cancellationToken: cancellationToken);
         
-
+        
         var nodes = teacherNodes
             .Select(x => 
                 new TreeNodeDTO<TeacherDTO>(
                     x.Id, 
                     x.Name, 
                     x.ShowPlan, 
-                    dbContext.Teachers.Where(y=>y.TeacherTreeId == x.Id).AsEnumerable().Select(ToDTO)
+                    GroupsFor(x.Id, request.ParentId),
+                    dbContext.TeacherTrees.Any(z => z.ParentId == x.Id)
                 )
             )
             .ToList();
@@ -32,4 +33,16 @@ internal class GetTeacherTreeNodesHandler(NewDbContext dbContext)
     }
 
     private TeacherDTO ToDTO(Teacher teacher) => new TeacherDTO(teacher.Id, teacher.Name, teacher.Surname);
+
+    private IEnumerable<TeacherDTO> GroupsFor(int Id, int ParentId)
+    {
+        return ParentId == 0
+            ? dbContext.Teachers
+                .Where(y => y.TeacherTreeId == Id || y.TeacherTreeId == 0)
+                .Select(ToDTO)
+            : dbContext.Teachers
+                .Where(y => y.TeacherTreeId == Id)
+                .Select(ToDTO);
+    }
+    
 }

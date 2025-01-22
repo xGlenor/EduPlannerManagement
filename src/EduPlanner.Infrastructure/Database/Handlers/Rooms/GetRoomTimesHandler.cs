@@ -21,18 +21,21 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
         var times = await (
             from courseTime in dbContext.CourseTimes
             join course in dbContext.Courses on courseTime.CourseId equals course.Id
+            join week in dbContext.Weeks on weekId equals week.Id
             join groupCourse in dbContext.GroupCourses on courseTime.CourseId equals groupCourse.CourseId
             where courseTime.RoomId == roomId 
                   && ((courseTime.WeekTypeId == 0 && courseTime.WeekId == weekId) 
                   || (courseTime.WeekId == 0 && courseTime.WeekTypeId == weekTypeId))
             select new
             {
+                Week = week,
                 CourseTime = courseTime,
                 Course = course,
                 GroupCourse = groupCourse
             }).ToListAsync();
 
         return times
+            .DistinctBy(x => x.GroupCourse.CourseId)
             .Select(x =>
                 new CourseTimeDTO(
                     x.CourseTime.CourseId,
@@ -42,7 +45,7 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
                     ToDTO(x.Course),
                     x.CourseTime.MinutesStart,
                     x.CourseTime.MinutesEnd,
-                    x.CourseTime.StartDate,
+                    x.Week.StartWeek,
                     x.CourseTime.EndDate
                 )
             ).ToArray();
