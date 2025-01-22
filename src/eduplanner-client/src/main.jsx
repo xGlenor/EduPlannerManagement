@@ -30,12 +30,9 @@ const routes = createBrowserRouter([
   
   {path: "/search(/string)",  element: <App Content={Search} />},
   
-  
 ]);
 
 createRoot(document.getElementById('root')).render(
-
-      <RouterProvider router={routes} />
-
+  <RouterProvider router={routes} />
   ,
 )
