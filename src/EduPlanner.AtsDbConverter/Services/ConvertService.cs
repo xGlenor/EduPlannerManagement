@@ -5,6 +5,7 @@ using EduPlanner.Domain.Entities.Courses;
 using EduPlanner.Domain.Entities.Groups;
 using EduPlanner.Domain.Entities.Reservations;
 using EduPlanner.Domain.Entities.Rooms;
+using EduPlanner.Domain.Entities.Teachers;
 using EduPlanner.Domain.Entities.Weeks;
 using EduPlanner.Domain.Helpers;
 using EduPlanner.Infrastructure.Database;
