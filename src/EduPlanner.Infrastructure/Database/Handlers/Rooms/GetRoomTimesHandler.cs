@@ -10,13 +10,13 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
 {
     public async Task<RoomTimesDTO> Handle(GetRoomTimes request, CancellationToken cancellationToken)
     {
-        var times = await GetCourseTimes(request.RoomId, request.WeekId, request.WeekTypeId);
-        var reservations = await GetReservations(request.RoomId, request.WeekId, request.WeekTypeId);
+        var times = await GetCourseTimes(request.RoomId, request.WeekId, request.WeekTypeIds);
+        var reservations = await GetReservations(request.RoomId, request.WeekId, request.WeekTypeIds);
         
         return new RoomTimesDTO(times, reservations);
     }
 
-    private async Task<IEnumerable<CourseTimeDTO>> GetCourseTimes(int roomId, int weekId, int weekTypeId)
+    private async Task<IEnumerable<CourseTimeDTO>> GetCourseTimes(int roomId, int weekId, int[] weekTypeIds)
     {
         var times = await (
             from courseTime in dbContext.CourseTimes
@@ -24,8 +24,7 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
             join week in dbContext.Weeks on weekId equals week.Id
             join groupCourse in dbContext.GroupCourses on courseTime.CourseId equals groupCourse.CourseId
             where courseTime.RoomId == roomId 
-                  && ((courseTime.WeekTypeId == 0 && courseTime.WeekId == weekId) 
-                  || (courseTime.WeekId == 0 && courseTime.WeekTypeId == weekTypeId))
+                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId))
             select new
             {
                 Week = week,
@@ -45,20 +44,19 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
                     ToDTO(x.Course),
                     x.CourseTime.MinutesStart,
                     x.CourseTime.MinutesEnd,
-                    x.Week.StartWeek,
+                    x.CourseTime.StartDate,
                     x.CourseTime.EndDate
                 )
             ).ToArray();
     }
 
-    private async Task<IEnumerable<ReservationDTO>> GetReservations(int roomId, int weekId, int weekTypeId)
+    private async Task<IEnumerable<ReservationDTO>> GetReservations(int roomId, int weekId, int[] weekTypeIds)
     {
         var reservations = await (
             from courseTime in dbContext.CourseTimes
             join reservation in dbContext.Reservations on courseTime.CourseId equals reservation.Id
             where courseTime.RoomId == roomId 
-                  && ((courseTime.WeekTypeId == 0 && courseTime.WeekId == weekId) 
-                      || (courseTime.WeekId == 0 && courseTime.WeekTypeId == weekTypeId))
+                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId))
             select new
             {
                 CourseTime = courseTime,
