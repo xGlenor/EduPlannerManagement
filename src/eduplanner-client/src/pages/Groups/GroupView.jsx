@@ -15,9 +15,7 @@ const GroupView = () => {
 
   
   const formatDate = (stringDate, addMinutes) => {
-    
     const now = new Date(stringDate);
-    now.setMinutes( addMinutes);
     
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, "0"); // Dodaje wiodące zero
@@ -45,7 +43,7 @@ const GroupView = () => {
               fullTitle: course.course.name,
               type: course.course.type,
               start: formatDate(course.startDate, course.minutesStart),
-              end: formatDate(course.startDate, course.minutesEnd),
+              end: formatDate(course.endDate, course.minutesEnd),
               location: (course.rooms? course.rooms[0].nr  : "Brak"),
               people: course.teachers.map((teacher) => {
                 return `${teacher.name} - ${teacher.surname}`;
@@ -61,18 +59,15 @@ const GroupView = () => {
               fullTitle: reservation.description,
               type: reservation.type,
               start: formatDate(reservation.startDate, reservation.minutesStart),
-              end: formatDate(reservation.startDate, reservation.minutesEnd),
-              
+              end: formatDate(reservation.endDate, reservation.minutesEnd),
             });
           });
         }
-        setEvents((prevState) => [...prevState, ...courses]);
+        setEvents((prevState) => [...courses]);
       })
     }
     
-    fetchData(1);
-    fetchData(2);
-
+    fetchData([1,2,3,4]);
     
     if(date) controls.setDate(date)
     

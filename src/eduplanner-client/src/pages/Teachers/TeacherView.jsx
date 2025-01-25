@@ -16,9 +16,7 @@ const TeacherView = () => {
 
   
   const formatDate = (stringDate, addMinutes) => {
-    
     const now = new Date(stringDate);
-    now.setMinutes( addMinutes);
     
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, "0"); // Dodaje wiodące zero
@@ -27,8 +25,9 @@ const TeacherView = () => {
     const minutes = String(now.getMinutes() ).padStart(2, "0");
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
-  const fetchData = async (id) => {
-    const response = ApiService.getTeachersTimes(typeId, weekId, id);
+  
+  const fetchData = async (ids) => {
+    const response = ApiService.getTeachersTimes(typeId, weekId, ids);
     const courses = []
     response.then((response) => {
       console.log(response);
@@ -40,7 +39,7 @@ const TeacherView = () => {
             fullTitle: course.course.name,
             type: course.course.type,
             start: formatDate(course.startDate, course.minutesStart),
-            end: formatDate(course.startDate, course.minutesEnd),
+            end: formatDate(course.endDate, course.minutesEnd),
             location: (course.rooms.length > 0 ? course.rooms[0].nr  : "Nie podano"),
             description: course.groups.map((group) => group.shortcut).join(", ")
           });
@@ -54,13 +53,13 @@ const TeacherView = () => {
             fullTitle: reservation.description,
             type: reservation.type,
             start: formatDate(reservation.startDate, reservation.minutesStart),
-            end: formatDate(reservation.startDate, reservation.minutesEnd),
+            end: formatDate(reservation.endDate, reservation.minutesEnd),
             location: (reservation.rooms.length > 0 ? reservation.rooms[0].nr  : "Nie podano"),
             description: reservation.groups.map((group) => group.shortcut).join(", ")
           });
         });
       }
-      setEvents((prevState) => [...prevState, ...courses]);
+      setEvents((prevState) => [...courses]);
       
     })
   }
@@ -68,9 +67,7 @@ const TeacherView = () => {
     setEvents([]);
   }, [typeId]);
   useEffect(() => {
-    fetchData(2);
-    fetchData(3);
-    fetchData(4);
+    fetchData([1,2,3,4]);
     if(date) controls.setDate(date)
   }, [weekId]);
   

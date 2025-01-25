@@ -20,20 +20,35 @@ async function getWeeks(){
   return await response.json();
 }
 
-async function getGroupsTimes(groupdId, weekId, weekTypeId){
-  const response = await fetch(`${BASE_URL}/groups/times?groupId=${groupdId}&weekId=${weekId}&weekTypeId=${weekTypeId}`);
+async function getGroupsTimes(groupdId, weekId, weekTypeIds){
+  const url = new URL('/api/groups/times', BASE_URL);
+  url.searchParams.set('groupId', groupdId);
+  url.searchParams.set('weekId', weekId);
+  weekTypeIds.forEach(id => url.searchParams.append('weekTypeIds', id));
+  
+  const response = await fetch(url);
   const data = await response.json();
   
   return data;
 }
-async function getTeachersTimes(teacherId, weekId, weekTypeId){
-  const response = await fetch(`${BASE_URL}/teachers/times?teacherId=${teacherId}&weekId=${weekId}&weekTypeId=${weekTypeId}`);
+async function getTeachersTimes(teacherId, weekId, weekTypeIds){
+  const url = new URL('/api/teachers/times', BASE_URL);
+  url.searchParams.set('teacherId', teacherId);
+  url.searchParams.set('weekId', weekId);
+  weekTypeIds.forEach(id => url.searchParams.append('weekTypeIds', id));
+  
+  const response = await fetch(url);
   const data = await response.json();
   
   return data;
 }
-async function getRoomsTimes(roomId, weekId, weekTypeId){
-  const response = await fetch(`${BASE_URL}/rooms/times?roomId=${roomId}&weekId=${weekId}&weekTypeId=${weekTypeId}`);
+async function getRoomsTimes(roomId, weekId, weekTypeIds){
+  const url = new URL('/api/rooms/times', BASE_URL);
+  url.searchParams.set('roomId', roomId);
+  url.searchParams.set('weekId', weekId);
+  weekTypeIds.forEach(id => url.searchParams.append('weekTypeIds', id));
+  
+  const response = await fetch(url);
   const data = await response.json();
   
   return data;
