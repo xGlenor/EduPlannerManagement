@@ -1,3 +1,4 @@
+using System.Text;
 using EduPlaner.DbSeeder.Model;
 using EduPlanner.Domain.Entities.Courses;
 using EduPlanner.Domain.Entities.Groups;
@@ -58,6 +59,7 @@ internal class TimetableItemExporter
         var course = new Course
         {
             Name = timetableItem.NAME,
+            Shortcut = ToCourseShortcut(timetableItem.NAME),
             TypeCourse = timetableItem.TYPE
         };
         await _dbContext.Courses.AddAsync(course);
@@ -92,7 +94,8 @@ internal class TimetableItemExporter
             var newGroup = new EduPlanner.Domain.Entities.Groups.Group()
             {
                 Id = group.id,
-                Name = group.name
+                Name = group.name,
+                Shortcut = group.name
             };
             await _dbContext.Groups.AddAsync(newGroup);
             await _dbContext.SaveChangesAsync();
@@ -153,10 +156,14 @@ internal class TimetableItemExporter
         var existedLecturer = await  _dbContext.Teachers.FirstOrDefaultAsync(x=>x.Id == lecturer.id);
         if (existedLecturer is null)
         {
+            var (firstName, lastName, title) = ProcessLecturerName(lecturer.name);
+            
             var teacher = new Teacher
             {
                 Id = lecturer.id,
-                Name = lecturer.name,
+                Name = firstName,
+                Surname = lastName,
+                Title = title
             };
             await _dbContext.Teachers.AddAsync(teacher);
             await _dbContext.SaveChangesAsync();
@@ -196,6 +203,34 @@ internal class TimetableItemExporter
         await _dbContext.SaveChangesAsync();
         
         return week.Id;
+    }
+
+    private (string FirstName, string? LastName, string? Title) ProcessLecturerName(string name)
+    {
+        var splitted = name.Split(' ');
+        if (splitted.Length < 3)
+            return (name, null, null);
+
+        var lastName = splitted[^1];
+        var firstName = splitted[^2];
+        var title = string.Join(' ',splitted[..^2]);
+        return (firstName, lastName, title);
+    }
+
+    private string ToCourseShortcut(string name)
+    {
+        var splitted = name.Split(' ');
+
+        var stringBuilder = new StringBuilder();
+        foreach (var subName in splitted)
+        {
+            if (string.IsNullOrWhiteSpace(subName))
+                continue;
+            
+            stringBuilder.Append(subName[0]);
+        }
+
+        return stringBuilder.ToString();
     }
 }
 
