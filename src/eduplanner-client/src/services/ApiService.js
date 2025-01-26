@@ -20,6 +20,18 @@ async function getWeeks(){
   return await response.json();
 }
 
+async function getTimes(resource, typeId, weekId, weekTypeIds) {
+  const url = new URL(`/api/${resource + 's'}/times`, BASE_URL);
+  url.searchParams.set(resource +'Id', typeId);
+  url.searchParams.set('weekId', weekId);
+  weekTypeIds.forEach(id => url.searchParams.append('weekTypeIds', id));
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+}
+
 async function getGroupsTimes(groupdId, weekId, weekTypeIds){
   const url = new URL('/api/groups/times', BASE_URL);
   url.searchParams.set('groupId', groupdId);
@@ -76,5 +88,6 @@ export default {
   getWeekById,
   getTeachersTimes,
   getRoomsTimes,
-  search
+  search,
+  getTimes
 }
