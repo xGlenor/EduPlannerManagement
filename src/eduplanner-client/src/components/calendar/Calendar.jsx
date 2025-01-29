@@ -9,10 +9,9 @@ import {createEventsServicePlugin} from "@schedule-x/events-service";
 import {createCurrentTimePlugin} from "@schedule-x/current-time";
 
 
-const Calendar = ({events, date, controls}) => {
+const Calendar = ({events, controls}) => {
   const eventModal = createEventModalPlugin()
   const eventsService = useState(() => createEventsServicePlugin())[0]
-  
   
   const calendar = useCalendarApp({
     theme: 'shadcn',

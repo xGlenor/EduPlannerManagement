@@ -18,11 +18,13 @@ const TimesView = ({resource}) => {
   const[date, setDate] = useState(null);
   
   useEffect(() => {
-      console.log("");
-     fetchWeeks(); 
-     fetchActualWeek();
+      const fetchData = async () => {
+          await fetchAndSetWeeks();
+          await fetchAndSetActualWeek();
+      }
+      fetchData();
   }, []);
-  
+    
   useEffect(() => {
       console.log("typeId");
     fetchAndSetTimes();
@@ -44,18 +46,20 @@ const TimesView = ({resource}) => {
       controls.setDate(date)
   }
   
+  const fetchAndSetActualWeek = async () => {
+      const currentWeek = await fetchActualWeek();
+      if (selectedWeek === currentWeek)
+          return;
+      setSelectedWeek(currentWeek);
+  }
+  
   const fetchActualWeek = async () =>{
       const currentDate = new Date();
       const currentWeek = await ApiService.getCurrentWeek(currentDate.toISOString());
-      if (currentWeek === selectedWeek) {
-          return;
-      }
-      
-      setSelectedWeek(currentWeek);
+      return currentWeek;
   }
 
   const fetchTimes = async (ids) => {
-    console.log(resource);  
     const response = await ApiService.getTimes(resource, typeId, weekId, ids);
       console.log(response);
 
@@ -90,7 +94,7 @@ const TimesView = ({resource}) => {
     return courses.concat(reservations);
   }
 
-  const fetchWeeks = async () =>{
+  const fetchAndSetWeeks = async () =>{
       const weeks = await ApiService.getWeeks();
       setWeeks(weeks);
   }
