@@ -16,7 +16,7 @@ const routes = createBrowserRouter([
   
   {path: "/groupstree", element: <App Content={GroupTree} />},
   {path: "/groupstree/:id", element: <App Content={GroupTree}/>},
-  {path: "/group/:typeId/week/:weekId",  element: <App Content={TimesView} />},
+  {path: "/group/:typeId/week/:weekId",  element: <App Content={()=><TimesView resource="group"/>}/>},
 
   {path: "/teacherstree", element: <App Content={TeacherTree} />},
   {path: "/teacherstree/:id", element: <App Content={TeacherTree} />},
@@ -24,7 +24,7 @@ const routes = createBrowserRouter([
   
   {path: "/roomstree", element: <App Content={RoomTree} />},
   {path: "/roomstree/:id", element: <App Content={RoomTree} />},
-  {path: "/room/:typeId/week/:weekId",  element: <App Content={<TimesView resource="rooms"/>} />},
+  {path: "/room/:typeId/week/:weekId",  element: <App Content={()=><TimesView resource="room"/>} />},
   
   {path: "/search(/string)",  element: <App Content={Search} />},
   
