@@ -2,7 +2,7 @@
 const Index = () => {
   return (
     <div>
-      Test123
+      <h2>Witam na planach zajęć Uniwersytetu Bielsko-Bialskiego</h2>
     </div>
   );
 };

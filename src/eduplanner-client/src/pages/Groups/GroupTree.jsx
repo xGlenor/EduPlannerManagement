@@ -13,7 +13,7 @@ const GroupTree = () => {
   useEffect(() => {
     
     const fetchGroups = async () => {
-      const response = ApiService.getGroupsById('groups',groupdId);
+      const response = ApiService.getGroupsById('groups', groupdId);
       response.then((data) => {
         setGroups(data.nodes);
       }).catch((error) => {
