@@ -43,8 +43,6 @@ public class ConvertService: IConvertService
     
     public void Convert()
     {
-
-        
         Transfer<Course>(_OldDbContext.Courses.ToList());
         Transfer<ReservationType>(_OldDbContext.ReservationTypes.ToList());
         Transfer<GroupTree>(_OldDbContext.GroupTrees.ToList());
@@ -66,8 +64,6 @@ public class ConvertService: IConvertService
         Transfer<ReservationGroup>(_OldDbContext.ReservationGroups.ToList());
         
         TransferCourseTimeTable();
-
-
     }
 
     public void Transfer<T>(List<T> list) where T : class
@@ -99,43 +95,13 @@ public class ConvertService: IConvertService
                 RoomId = timeold.RoomId,
             };
             
-            if (timeold.WeekId != 0)
-            {
-                //Dodać tylko minuty
-                baseDate = weeks.FirstOrDefault(w => w.Id == timeold.WeekId)?.StartWeek;
-            }else if (timeold.WeekTypeId != 0)
-            {
-                var weekIds = weekWeekTypes
-                    .Where(w => w.WeekTypeId == timeold.WeekTypeId)
-                    .Select(w => w.WeekId)
-                    .ToList();
-
-                baseDate = weeks.FirstOrDefault(w => weekIds.Contains(w.Id))?.StartWeek;
-            }
-
-            if (baseDate.HasValue)
-            {
-                var minutesStart = (timeold.Start - 1) * 15;
-                var minutesEnd = minutesStart + (timeold.Dur * 15);
+            var minutesStart = (timeold.Start - 1) * 15;
+            var minutesEnd = minutesStart + (timeold.Dur * 15);
                 
-                var startDate = baseDate.Value.AddMinutes(minutesStart);
-                var endDate = startDate.AddMinutes((timeold.Dur * 15));
+            courseTime.MinutesStart = minutesStart;
+            courseTime.MinutesEnd = minutesEnd;
                 
-                
-                courseTime.StartDate = startDate;
-                courseTime.EndDate = endDate;
-                courseTime.MinutesStart = minutesStart;
-                courseTime.MinutesEnd = minutesEnd;
-                
-                if(timeold.StartDate != TimeSpan.Zero)
-                    courseTime.StartDate = CourseHelper.SetTime(courseTime.StartDate.Value, timeold.StartDate.Value);
-                
-                if(timeold.EndDate != TimeSpan.Zero)
-                    courseTime.EndDate = CourseHelper.SetTime(courseTime.EndDate.Value, timeold.EndDate.Value);
-                
-                coursesList.Add(courseTime);
-                
-            }
+            coursesList.Add(courseTime);
         }
         
         _newDbContext.AddRangeAsync(coursesList);
