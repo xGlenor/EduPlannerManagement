@@ -6,7 +6,6 @@ import "./Calendar.css"
 import { useState} from "react";
 import {createEventsServicePlugin} from "@schedule-x/events-service";
 import {createCurrentTimePlugin} from "@schedule-x/current-time";
-import CustomTimeGridEvent from "../CustomTimeGridEvent.tsx";
 
 
 const Calendar = ({events, date, controls}) => {

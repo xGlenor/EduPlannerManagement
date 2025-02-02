@@ -1,6 +1,4 @@
 import {Component, Fragment} from 'react';
-import LogoFull from '../../../public/assets/full-logo.png';
-import LogoSmall from '../../../public/assets/small-logo.png';
 
 import {Menus} from "../../lib/Menus.jsx";
 import "./Sidebar.css";
@@ -20,7 +18,7 @@ class Sidebar extends Component {
         {/* LOGO */}
         <div>
           <div className="sidebar__logo">
-            <img src={isOpen ? LogoFull : LogoSmall} alt="Logo"/>
+            <img src={`/assets/${isOpen ? 'full-logo.png' : 'small-logo.png'}`} alt="Logo"/>
           </div>
           
           

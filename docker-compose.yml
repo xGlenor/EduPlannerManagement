@@ -1,13 +1,12 @@
 services:
   eduplanner-api:
-    image: eduplanner
-    container_name: eduplanner-app
+    container_name: eduplanner-api
     restart: no
     ports:
       - "8081:8080"
     build:
-      context: .
-      dockerfile: ./src/EduPlanner.API/Dockerfile
+      context: ./src/EduPlanner.API
+      dockerfile: Dockerfile
     networks:
       - edunetwork
   eduplanner-mariadb:
@@ -22,17 +21,6 @@ services:
       - edunetwork
     volumes:
       - mariadb-data:/var/lib/mariadb/data
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: unless-stopped
-    ports:
-      - "8088:80"
-    environment:
-
-      PMA_HOST: eduplanner-mariadb
-      MYSQL_ROOT_PASSWORD: root123
-    networks:
-      - edunetwork
 
 volumes:
   mariadb-data:
