@@ -1,5 +1,5 @@
 services:
-  eduplanner:
+  eduplanner-api:
     image: eduplanner
     container_name: eduplanner-app
     restart: no
