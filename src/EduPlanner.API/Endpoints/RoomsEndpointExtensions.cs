@@ -25,9 +25,9 @@ public static class RoomsEndpointExtensions
             return Results.Ok(nodes);
         });
         
-        group.MapGet("times", [ProducesResponseType(typeof(RoomTimesDTO), StatusCodes.Status200OK)] async (int roomId, int weekId, int weekTypeId, CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        group.MapGet("times", [ProducesResponseType(typeof(RoomTimesDTO), StatusCodes.Status200OK)] async (int roomId, int weekId, int[] weekTypeIds, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
-            var query = new GetRoomTimes(roomId, weekId, weekTypeId);
+            var query = new GetRoomTimes(roomId, weekId, weekTypeIds);
             var courseTimes = await sender.Send(query, cancellationToken);
             return Results.Ok(courseTimes);
         });

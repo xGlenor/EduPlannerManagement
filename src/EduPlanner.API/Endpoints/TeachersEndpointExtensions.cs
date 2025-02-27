@@ -26,9 +26,9 @@ public static class TeachersEndpointExtensions
             return Results.Ok(nodes);
         });
         
-        group.MapGet("times", [ProducesResponseType(typeof(TeacherTimesDTO), StatusCodes.Status200OK)] async (int teacherId, int weekId, int weekTypeId, CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        group.MapGet("times", [ProducesResponseType(typeof(TeacherTimesDTO), StatusCodes.Status200OK)] async (int teacherId, int weekId, int[] weekTypeIds, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
-            var query = new GetTeacherTimes(teacherId, weekId, weekTypeId);
+            var query = new GetTeacherTimes(teacherId, weekId, weekTypeIds);
             var courseTimes = await sender.Send(query, cancellationToken);
             return Results.Ok(courseTimes);
         });
