@@ -29,28 +29,6 @@ async function getTimes(resource, typeId, weekId, weekTypeIds) {
   return data;
 }
 
-async function getTeachersTimes(teacherId, weekId, weekTypeIds){
-  const url = new URL('/api/teachers/times', BASE_URL);
-  url.searchParams.set('teacherId', teacherId);
-  url.searchParams.set('weekId', weekId);
-  weekTypeIds.forEach(id => url.searchParams.append('weekTypeIds', id));
-  
-  const response = await fetch(url);
-  const data = await response.json();
-  
-  return data;
-}
-async function getRoomsTimes(roomId, weekId, weekTypeIds){
-  const url = new URL('/api/rooms/times', BASE_URL);
-  url.searchParams.set('roomId', roomId);
-  url.searchParams.set('weekId', weekId);
-  weekTypeIds.forEach(id => url.searchParams.append('weekTypeIds', id));
-  
-  const response = await fetch(url);
-  const data = await response.json();
-  
-  return data;
-}
 async function search(type, filter) {
   const response = await fetch(`${BASE_URL}/${type}/search?name=${filter}`);
   const data = await response.json();
@@ -68,8 +46,6 @@ export default {
   getWeeks,
   getWeekId,
   getWeekById,
-  getTeachersTimes,
-  getRoomsTimes,
   search,
   getTimes
 }
