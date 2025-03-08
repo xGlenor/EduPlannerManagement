@@ -13,5 +13,6 @@
     <File Path="docker-compose.yml" />
     <File Path=".env" />
     <File Path="testing-data-ats.sql" />
+    <File Path="Dockerfile" />
   </Folder>
 </Solution>

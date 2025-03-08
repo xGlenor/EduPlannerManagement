@@ -17,10 +17,4 @@
       <ProjectReference Include="..\EduPlanner.Infrastructure\EduPlanner.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
 </Project>
