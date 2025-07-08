@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../index.css";
+
 header.sx__calendar-header{
     display: none ;
 }
