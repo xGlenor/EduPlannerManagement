@@ -72,7 +72,7 @@ const Search = () => {
           type={"search"}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          className="bg-transparent focus:outline-none outline-none ring-0 w-auto text-ubb-gray border-none p-0"
+          className="bg-transparent focus:outline-hidden outline-hidden ring-0 w-auto text-ubb-gray border-none p-0"
           placeholder={"Szukaj..."}/>
       </div>
       {(groups.length > 0 || teachers.length > 0 || rooms.length > 0) &&  (

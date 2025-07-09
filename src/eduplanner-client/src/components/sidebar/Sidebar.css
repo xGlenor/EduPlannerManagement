@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../index.css";
+
 .sidebar {
     @apply bg-primary-dark h-screen duration-300 sticky top-0 left-0 flex flex-col justify-between;
 }

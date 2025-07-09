@@ -1,4 +1,3 @@
-import './App.css'
 import Sidebar from "./components/sidebar/Sidebar.jsx";
 import {useState} from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
