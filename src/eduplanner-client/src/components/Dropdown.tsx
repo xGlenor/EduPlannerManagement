@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {FaCaretDown, FaCaretUp} from "react-icons/fa6";
 import {Link} from "react-router";
-import ApiService from "../services/ApiService.js";
+import ApiService from "../services/ApiService.ts";
 
 function Dropdown({title, groups, type}) {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,19 +1,19 @@
 import {Link, useParams} from "react-router";
 import { useEffect, useState} from "react";
-import Dropdown from "../../components/Dropdown.jsx";
-import ApiService from "../../services/ApiService.js";
+import Dropdown from "../../components/Dropdown.tsx";
+import ApiService from "../../services/ApiService.ts";
 
 
 const TeacherTree = () => {
   const {id} = useParams();
   const [loading, setLoading] = useState(true);
-  const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState<any[]>([]);
   const groupdId = id || 0;
   
   useEffect(() => {
     
     const fetchGroups = async () => {
-      const response = ApiService.getGroupsById('teachers',groupdId);
+      const response = ApiService.getGroupsById('teachers',groupdId as number);
       response.then((data) => {
         setGroups(data.nodes);
       }).catch((error) => {

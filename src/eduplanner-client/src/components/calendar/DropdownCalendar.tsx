@@ -1,9 +1,8 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {FaCaretDown, FaCaretUp} from "react-icons/fa6";
-import {Link, useNavigate, useParams} from "react-router";
-import ApiService from "../../services/ApiService.js";
+import {Link, useParams} from "react-router";
 
-function DropdownCalendar({weeks, selectedWeekId, type}) {
+function DropdownCalendar({weeks, selectedWeekId, type}: any) {
   const params = useParams();
   const [isOpen, setIsOpen] = useState(false);
   
