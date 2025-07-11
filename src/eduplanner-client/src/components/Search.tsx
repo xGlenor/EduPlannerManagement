@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import ApiService from "../services/ApiService.js";
+import ApiService from "../services/ApiService.ts";
 import {Link} from "react-router";
 import {FaSearch} from "react-icons/fa";
 
@@ -7,10 +7,10 @@ import {FaSearch} from "react-icons/fa";
 const Search = () => {
   const [searchValue, setSearchValue] = useState('');
   
-  const [groups, setGroups] = useState([]);
-  const [teachers, setTeachers] = useState([]);
-  const [rooms, setRooms] = useState([]);
-  const [week, setWeek] = useState(0);
+  const [groups, setGroups] = useState<any[]>([]);
+  const [teachers, setTeachers] = useState<any[]>([]);
+  const [rooms, setRooms] = useState<any[]>([]);
+  const [week, setWeek] = useState<number>(0);
   
   useEffect(() => {
     const getWeekId = () => {
