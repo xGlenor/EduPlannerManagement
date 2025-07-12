@@ -11,7 +11,6 @@ const TeacherTree = () => {
   const groupdId = id || 0;
   
   useEffect(() => {
-    
     const fetchGroups = async () => {
       const response = ApiService.getGroupsById('teachers',groupdId as number);
       response.then((data) => {
