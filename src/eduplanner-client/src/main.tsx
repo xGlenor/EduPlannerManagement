@@ -13,7 +13,7 @@ import TimesView from "./pages/Times/TimesView.tsx";
 
 const routes = createBrowserRouter([
   {path: "/", element: <App content={<Index />} />},
-  
+
   {path: "/groupstree", element: <App content={<GroupTree />} />},
   {path: "/groupstree/:id", element: <App content={<GroupTree />}/>},
   {path: "/group/:typeId/week/:weekId",  element: <App content={<TimesView resource="group"/>}/>},
@@ -21,11 +21,11 @@ const routes = createBrowserRouter([
   {path: "/teacherstree", element: <App content={<TeacherTree />} />},
   {path: "/teacherstree/:id", element: <App content={<TeacherTree />} />},
   {path: "/teacher/:typeId/week/:weekId",  element: <App content={<TimesView resource="teacher"/>} />},
-  
+
   {path: "/roomstree", element: <App content={<RoomTree />} />},
   {path: "/roomstree/:id", element: <App content={<RoomTree />} />},
   {path: "/room/:typeId/week/:weekId",  element: <App content={<TimesView resource="room"/>} />},
-  
+
   {path: "/search(/string)",  element: <App content={<Search />} />},
 ]);
 
