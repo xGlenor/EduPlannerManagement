@@ -12,6 +12,10 @@
   },
   "dependencies": {
     "@preact/signals": "^2.2.1",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tooltip": "^1.2.7",
     "@schedule-x/calendar": "^2.36.0",
     "@schedule-x/calendar-controls": "^2.36.0",
     "@schedule-x/current-time": "^2.36.0",
