@@ -15,7 +15,9 @@ public static class Extensions
         {
             cfg.RegisterServicesFromAssembly(typeof(Extensions).Assembly);
         });
+        
         services.AddDatabase(configuration);
+        services.AddRepositories();
         return services;
     }
     
