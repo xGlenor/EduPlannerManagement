@@ -27,7 +27,7 @@ internal abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where
         => DbSet.RemoveRange(entities);
 
     public Task<TEntity?> FindOneAsync(Expression<Func<TEntity, bool>> predicate)
-        => DbSet.FirstOrDefaultAsync(predicate)!;
+        => DbSet.FirstOrDefaultAsync(predicate);
 
     public Task<List<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
         => DbSet.Where(predicate).ToListAsync();
