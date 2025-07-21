@@ -5,11 +5,11 @@ using EduPlanner.Application.Rooms;
 
 namespace EduPlanner.API.Endpoints;
 
-public static class RoomsEndpointExtensions
+public sealed class RoomsEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapRooms(this IEndpointRouteBuilder endpoints)
+    public void MapEndpoint(IEndpointRouteBuilder builder)
     {
-        var group = endpoints.MapGroup("rooms");
+        var group = builder.MapGroup("rooms");
         
         group.MapGet("/search", [ProducesResponseType(typeof(IEnumerable<RoomDTO>), StatusCodes.Status200OK)] async (string name, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
@@ -31,7 +31,5 @@ public static class RoomsEndpointExtensions
             var courseTimes = await sender.Send(query, cancellationToken);
             return Results.Ok(courseTimes);
         });
-        
-        return endpoints;
     }
 }
