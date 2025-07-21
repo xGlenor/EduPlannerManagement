@@ -14,4 +14,8 @@
       <ProjectReference Include="..\EduPlanner.Domain\EduPlanner.Domain.csproj" />
     </ItemGroup>
     
+    <ItemGroup>
+      <Folder Include="Common\Persistence\" />
+    </ItemGroup>
+    
 </Project>
