@@ -4,11 +4,11 @@ using EduPlanner.Application.Colors;
 
 namespace EduPlanner.API.Endpoints;
 
-public static class ColorsEndpointExtensions
+public sealed class ColorsEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapColors(this IEndpointRouteBuilder endpoints)
+    public void MapEndpoint(IEndpointRouteBuilder builder)
     {
-        var group = endpoints.MapGroup("colors");
+        var group = builder.MapGroup("colors");
 
         group.MapGet("", [ProducesResponseType(typeof(IEnumerable<ColorDTO>), StatusCodes.Status200OK)] async (CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
@@ -16,7 +16,5 @@ public static class ColorsEndpointExtensions
             var result = await sender.Send(query, cancellationToken);
             return Results.Ok(result);
         });
-        
-        return endpoints;
     }
 }

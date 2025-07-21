@@ -4,11 +4,11 @@ using EduPlanner.Application.Weeks;
 
 namespace EduPlanner.API.Endpoints;
 
-public static class WeeksEndpointExtensions
+public sealed class WeeksEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapWeeks(this IEndpointRouteBuilder endpoints)
+    public void MapEndpoint(IEndpointRouteBuilder builder)
     {
-        var group = endpoints.MapGroup("weeks");
+        var group = builder.MapGroup("weeks");
 
         group.MapGet("", [ProducesResponseType(typeof(IEnumerable<WeekDTO>), StatusCodes.Status200OK)] async (CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
@@ -36,8 +36,5 @@ public static class WeeksEndpointExtensions
             
             return Results.Ok(result);
         });
-        
-        
-        return endpoints;
     }
 }

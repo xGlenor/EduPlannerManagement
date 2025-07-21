@@ -5,11 +5,11 @@ using EduPlanner.Application.Groups;
 
 namespace EduPlanner.API.Endpoints;
 
-public static class GroupsEndpointExtensions
+public sealed class GroupsEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapGroups(this IEndpointRouteBuilder endpoints)
+    public void MapEndpoint(IEndpointRouteBuilder builder)
     {
-        var group = endpoints.MapGroup("groups");
+        var group = builder.MapGroup("groups");
 
         group.MapGet("/search", [ProducesResponseType(typeof(IEnumerable<GroupDTO>), StatusCodes.Status200OK)] async (string name, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
@@ -31,7 +31,5 @@ public static class GroupsEndpointExtensions
             var courseTimes = await sender.Send(query, cancellationToken);
             return Results.Ok(courseTimes);
         });
-        
-        return endpoints;
     }
 }
