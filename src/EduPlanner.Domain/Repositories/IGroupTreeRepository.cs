@@ -2,4 +2,4 @@
 
 namespace EduPlanner.Domain.Repositories;
 
-public interface IGroupTreeRepository : IBaseRepository<GroupTree>;
+public interface IGroupTreeRepository : IReadOnlyRepository<GroupTree>;

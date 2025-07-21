@@ -2,4 +2,4 @@
 
 namespace EduPlanner.Domain.Repositories;
 
-public interface ICourseTimeRepository : IBaseRepository<CourseTime>;
+public interface ICourseTimeRepository : IReadOnlyRepository<CourseTime>;

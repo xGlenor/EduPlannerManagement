@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EduPlanner.Infrastructure.Database.Repositories;
 
-internal sealed class CourseTimeRepository : BaseRepository<CourseTime>, ICourseTimeRepository
+internal sealed class CourseTimeRepository : ReadOnlyRepository<CourseTime>, ICourseTimeRepository
 {
     public CourseTimeRepository(DbContext dbContext) : base(dbContext)
     {

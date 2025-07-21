@@ -24,7 +24,7 @@ public static class Extensions
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         return services.Scan(x => x.FromAssemblyOf<NewDbContext>()
-            .AddClasses(c => c.AssignableTo(typeof(IBaseRepository<>)), false)
+            .AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<>)), false)
             .AsImplementedInterfaces()
             .WithScopedLifetime());
     }

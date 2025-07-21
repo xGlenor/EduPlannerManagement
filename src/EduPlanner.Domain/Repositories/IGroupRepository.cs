@@ -2,4 +2,4 @@
 
 namespace EduPlanner.Domain.Repositories;
 
-public interface IGroupRepository : IBaseRepository<Group>;
+public interface IGroupRepository : IReadOnlyRepository<Group>;

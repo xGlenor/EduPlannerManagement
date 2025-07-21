@@ -2,4 +2,4 @@
 
 namespace EduPlanner.Domain.Repositories;
 
-public interface ITeacherCourseRepository : IBaseRepository<TeacherCourse>;
+public interface ITeacherCourseRepository : IReadOnlyRepository<TeacherCourse>;

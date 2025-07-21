@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EduPlanner.Infrastructure.Database.Repositories;
 
-internal sealed class TeacherCourseRepository : BaseRepository<TeacherCourse>, ITeacherCourseRepository
+internal sealed class TeacherCourseRepository : ReadOnlyRepository<TeacherCourse>, ITeacherCourseRepository
 {
     public TeacherCourseRepository(DbContext dbContext) : base(dbContext)
     {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EduPlanner.Infrastructure.Database.Repositories;
 
-internal sealed class WeekTypeRepository : BaseRepository<WeekType>, IWeekTypeRepository
+internal sealed class WeekTypeRepository : ReadOnlyRepository<WeekType>, IWeekTypeRepository
 {
     public WeekTypeRepository(DbContext dbContext) : base(dbContext)
     {

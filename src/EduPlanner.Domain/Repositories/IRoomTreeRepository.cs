@@ -2,4 +2,4 @@
 
 namespace EduPlanner.Domain.Repositories;
 
-public interface IRoomTreeRepository : IBaseRepository<RoomTree>;
+public interface IRoomTreeRepository : IReadOnlyRepository<RoomTree>;

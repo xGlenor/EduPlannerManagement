@@ -2,4 +2,4 @@
 
 namespace EduPlanner.Domain.Repositories;
 
-public interface IWeekWeekTypeRepository : IBaseRepository<WeekWeekType>;
+public interface IWeekWeekTypeRepository : IReadOnlyRepository<WeekWeekType>;

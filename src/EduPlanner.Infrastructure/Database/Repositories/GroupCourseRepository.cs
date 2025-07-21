@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EduPlanner.Infrastructure.Database.Repositories;
 
-internal sealed class GroupCourseRepository : BaseRepository<GroupCourse>, IGroupCourseRepository
+internal sealed class GroupCourseRepository : ReadOnlyRepository<GroupCourse>, IGroupCourseRepository
 {
     public GroupCourseRepository(DbContext dbContext) : base(dbContext)
     {
