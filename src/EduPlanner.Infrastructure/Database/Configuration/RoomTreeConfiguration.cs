@@ -13,7 +13,7 @@ internal sealed class RoomTreeConfiguration : IEntityTypeConfiguration<RoomTree>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id).HasColumnName("id_room_tree");
-        builder.Property(x => x.Name).HasColumnName("name");
+        builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(255);
         builder.Property(x => x.ParentId).HasColumnName("parent");
         builder.Property(x => x.ShowPlan).HasColumnName("bShowPlan");
     }

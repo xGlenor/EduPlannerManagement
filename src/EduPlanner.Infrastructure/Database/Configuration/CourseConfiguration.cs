@@ -12,10 +12,10 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
         
         builder.HasKey(c => c.Id);
         
-        builder.Property(c => c.Id).HasColumnName("id").IsRequired();
-        builder.Property(c => c.Name).HasColumnName("name");
-        builder.Property(c => c.Shortcut).HasColumnName("shortcut");
-        builder.Property(c => c.TypeCourse).HasColumnName("type");
-        builder.Property(c => c.Comment).HasColumnName("comment");
+        builder.Property(c => c.Id).HasColumnName("id");
+        builder.Property(c => c.Name).HasColumnName("name").HasMaxLength(255);
+        builder.Property(c => c.Shortcut).HasColumnName("shortcut").HasMaxLength(255);
+        builder.Property(c => c.TypeCourse).HasColumnName("type").HasMaxLength(255);
+        builder.Property(c => c.Comment).HasColumnName("comment").HasDefaultValue(null);
     }
 }

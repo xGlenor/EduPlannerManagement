@@ -9,16 +9,30 @@ internal sealed class CourseTimeConfiguration : IEntityTypeConfiguration<CourseT
     public void Configure(EntityTypeBuilder<CourseTime> builder)
     {
         builder.ToTable("times");
-        
-        builder.HasKey(ct => new { ct.CourseId, ct.WeekId, ct.WeekTypeId });
 
-        builder.Property(c => c.CourseId).HasColumnName("idEvent").IsRequired();
-        builder.Property(c => c.WeekId).HasColumnName("idWeek").IsRequired();
-        builder.Property(c => c.WeekTypeId).HasColumnName("idWeekDef").IsRequired();
-        builder.Property(c => c.RoomId).HasColumnName("idRoom");
-        builder.Property(c => c.MinutesStart).HasColumnName("minutesStart").IsRequired();
-        builder.Property(c => c.MinutesEnd).HasColumnName("minutesEnd").IsRequired();
-        builder.Property(c => c.StartDate).HasColumnName("dtStart");
-        builder.Property(c => c.EndDate).HasColumnName("dtStop");
+        builder.HasNoKey();
+
+        builder.Property(c => c.CourseId).HasColumnName("idEvent").HasDefaultValue(null);
+        builder.Property(c => c.WeekId).HasColumnName("idWeek").HasDefaultValue(0);
+        builder.Property(c => c.WeekTypeId).HasColumnName("idWeekDef").HasDefaultValue(0);
+        builder.Property(c => c.RoomId).HasColumnName("idRoom").IsRequired();
+        builder.Property(c => c.StartDate).HasColumnName("dtStart").HasDefaultValue("00:00:00");
+        builder.Property(c => c.EndDate).HasColumnName("dtStop").HasDefaultValue("00:00:00");
+
+        builder
+            .HasOne(x => x.Week)
+            .WithMany()
+            .HasForeignKey(x => x.WeekId)
+            .HasPrincipalKey(x => x.Id)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_times_weeks");
+        
+        builder
+            .HasOne(x => x.WeekType)
+            .WithMany()
+            .HasForeignKey(x => x.WeekTypeId)
+            .HasPrincipalKey(x => x.Id)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_times_weekdefs");
     }
 }

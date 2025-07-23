@@ -15,12 +15,17 @@ internal sealed class GroupConfiguration : IEntityTypeConfiguration<Group>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id).HasColumnName("id");
-        builder.Property(x => x.Name).HasColumnName("name");
-        builder.Property(x => x.Shortcut).HasColumnName("shortcut");
+        builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(255).IsRequired();
+        builder.Property(x => x.Shortcut).HasColumnName("shortcut").HasMaxLength(255).IsRequired();
         builder.Property(x => x.Semester).HasColumnName("semester");
-        builder.Property(x => x.Comment).HasColumnName("nr_comment");
+        builder.Property(x => x.Comment).HasColumnName("nr_comment").IsRequired();
         builder.Property(x => x.NrStud).HasColumnName("nr_stud");
         builder.Property(x => x.GroupTreeId).HasColumnName("id_group_tree");
         
+        builder.HasOne(x => x.GroupTree)
+            .WithMany()
+            .HasForeignKey(x => x.GroupTreeId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_groups_group_tree");
     }
 }

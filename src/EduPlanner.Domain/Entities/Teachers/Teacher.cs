@@ -14,4 +14,6 @@ public class Teacher: IEntity
     public string? Phone { get; set; }
     
     public int? TeacherTreeId { get; set; }
+    
+    public virtual TeacherTree? TeacherTree { get; set; }
 }

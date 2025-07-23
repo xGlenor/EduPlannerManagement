@@ -10,9 +10,21 @@ internal sealed class GroupCourseConfiguration : IEntityTypeConfiguration<GroupC
     {
         builder.ToTable("set_groups");
         
-        builder.HasKey(x => new { x.GroupId, x.CourseId });
+        builder.HasNoKey();
         
-        builder.Property(x => x.GroupId).HasColumnName("id_group");
         builder.Property(x => x.CourseId).HasColumnName("id");
+        builder.Property(x => x.GroupId).HasColumnName("id_group");
+        
+        builder.HasOne(x => x.Course)
+            .WithMany()
+            .HasForeignKey(e => e.CourseId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_set_groups_courses");
+        
+        builder.HasOne(x => x.Group)
+            .WithMany()
+            .HasForeignKey(e => e.GroupId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_set_groups_groups");
     }
 }

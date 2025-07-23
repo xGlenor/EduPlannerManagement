@@ -10,9 +10,21 @@ internal sealed class WeekWeekTypeConfiguration: IEntityTypeConfiguration<WeekWe
     {
         builder.ToTable("weekweekdef");
 
+        builder.HasNoKey();
+
         builder.Property(x => x.WeekId).HasColumnName("idWeek");
         builder.Property(x => x.WeekTypeId).HasColumnName("idWeekDef");
-
-        builder.HasKey(x => new { x.WeekId, x.WeekTypeId });
+        
+        builder.HasOne<Week>()
+            .WithMany()
+            .HasForeignKey(e => e.WeekId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_weekweekdef_weeks");
+        
+        builder.HasOne(x => x.WeekType)
+            .WithMany()
+            .HasForeignKey(e => e.WeekTypeId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_weekweekdef_weekdefs");
     }
 }

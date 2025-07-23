@@ -11,8 +11,9 @@ internal sealed class GroupTreeConfiguration : IEntityTypeConfiguration<GroupTre
         builder.ToTable("group_tree");
 
         builder.HasKey(x => x.Id);
+        
         builder.Property(x => x.Id).HasColumnName("id_group_tree");
-        builder.Property(x => x.Name).HasColumnName("name");
+        builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(255);
         builder.Property(x => x.ShowPlan).HasColumnName("bShowPlan");
         builder.Property(x => x.ParentId).HasColumnName("parent");
     }

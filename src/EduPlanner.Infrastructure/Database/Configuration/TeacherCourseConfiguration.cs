@@ -10,11 +10,23 @@ internal sealed class TeacherCourseConfiguration : IEntityTypeConfiguration<Teac
     {
         builder.ToTable("set_cond");
 
-        builder.HasKey(ct => new { ct.CourseId, ct.TeacherId });
+        builder.HasNoKey();
         
-        builder.Property(x => x.TeacherId).HasColumnName("id_cond");
         builder.Property(x => x.CourseId).HasColumnName("id");
-        builder.Property(x => x.Remarks).HasColumnName("remarks");
+        builder.Property(x => x.TeacherId).HasColumnName("id_cond");
+        builder.Property(x => x.Remarks).HasColumnName("remarks").HasMaxLength(255);
         builder.Property(x => x.IdRoom).HasColumnName("idRoom");
+        
+        builder.HasOne(x => x.Course)
+            .WithMany()
+            .HasForeignKey(x => x.CourseId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_set_cond_courses");
+        
+        builder.HasOne(x => x.Teacher)
+            .WithMany()
+            .HasForeignKey(e => e.TeacherId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_set_cond_conductors");
     }
 }

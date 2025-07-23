@@ -10,4 +10,6 @@ public class Reservation : IEntity
     public string? Description { get; set; }
     public int? Active { get; set; }
     
+    public virtual ReservationType ReservationType { get; set; }
+    
 }

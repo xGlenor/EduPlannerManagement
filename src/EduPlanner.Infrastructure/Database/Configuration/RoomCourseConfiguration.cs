@@ -10,9 +10,21 @@ internal sealed class RoomCourseConfiguration : IEntityTypeConfiguration<RoomCou
     {
         builder.ToTable("set_rooms");
 
-        builder.HasKey(ct => new { ct.CourseId, ct.RoomId });
+        builder.HasNoKey();
 
-        builder.Property(x => x.RoomId).HasColumnName("id_room");
         builder.Property(x => x.CourseId).HasColumnName("id");
+        builder.Property(x => x.RoomId).HasColumnName("id_room");
+        
+        builder.HasOne(x => x.Course)
+            .WithMany()
+            .HasForeignKey(e => e.CourseId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_set_rooms_courses");
+        
+        builder.HasOne(x => x.Room)
+            .WithMany()
+            .HasForeignKey(e => e.RoomId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_set_rooms_rooms");
     }
 }

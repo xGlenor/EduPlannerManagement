@@ -12,4 +12,6 @@ public class Room : IEntity
     public short? CapacityLab { get; set; }
     
     public int? RoomTreeId { get; set; }
+    
+    public virtual RoomTree? RoomTree { get; set; }
 }

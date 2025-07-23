@@ -14,6 +14,6 @@ internal sealed class WeekConfiguration : IEntityTypeConfiguration<Week>
 
         builder.Property(x => x.Id).HasColumnName("idWeek");
         builder.Property(x => x.StartWeek).HasColumnName("dtStart");
-        builder.Property(x => x.Description).HasColumnName("sDescript");
+        builder.Property(x => x.Description).HasColumnName("sDescript").HasMaxLength(250);
     }
 }

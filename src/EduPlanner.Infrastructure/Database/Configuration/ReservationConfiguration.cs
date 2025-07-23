@@ -14,8 +14,14 @@ internal sealed class ReservationConfiguration : IEntityTypeConfiguration<Reserv
         
         builder.Property(x => x.Id).HasColumnName("id");
         builder.Property(x => x.ReservationTypeId).HasColumnName("idReserType");
-        builder.Property(x => x.Type).HasColumnName("type");
-        builder.Property(x => x.Description).HasColumnName("descript");
+        builder.Property(x => x.Type).HasColumnName("type").HasMaxLength(255);
+        builder.Property(x => x.Description).HasColumnName("descript").HasMaxLength(255);
         builder.Property(x => x.Active).HasColumnName("active");
+        
+        builder.HasOne(x => x.ReservationType)
+            .WithMany()
+            .HasForeignKey(e => e.ReservationTypeId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_resers_reser_type");
     }
 }

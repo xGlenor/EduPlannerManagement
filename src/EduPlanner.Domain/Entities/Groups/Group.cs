@@ -12,4 +12,6 @@ public class Group: IEntity
     public int? NrStud { get; set; }
     public int? GroupTreeId { get; set; }
     
+    public virtual GroupTree? GroupTree { get; set; }
+    
 }
