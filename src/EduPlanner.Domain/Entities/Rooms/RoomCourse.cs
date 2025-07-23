@@ -1,15 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using EduPlanner.Domain.Entities.Courses;
+﻿using EduPlanner.Domain.Entities.Courses;
 
 namespace EduPlanner.Domain.Entities.Rooms;
 
-[Table("set_rooms")]
 public class RoomCourse
 {
-    [Column("id_room")]
-    public int RoomId { get; set; }
+    public int? CourseId { get; set; }
+    public int? RoomId { get; set; }
     
-    [Column("id")]
-    public int CourseId { get; set; }
-    
+    public virtual Course? Course { get; set; }
+    public virtual Room? Room { get; set; }
 }

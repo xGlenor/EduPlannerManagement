@@ -1,16 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using EduPlanner.Domain.Entities.Courses;
-using EduPlanner.Domain.Entities.Groups;
+﻿using EduPlanner.Domain.Entities.Groups;
 
 namespace EduPlanner.Domain.Entities.Reservations;
 
-[Table("reser_group")]
 public class ReservationGroup
 {
-    [Column("id_group")]
     public int GroupId { get; set; }
-    
-    [Column("id")]
     public int ReservationId { get; set; }
     
+    public virtual Group Group { get; set; } 
+    public virtual Reservation Reservation { get; set; }
 }
