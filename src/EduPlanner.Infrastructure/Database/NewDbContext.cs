@@ -38,35 +38,7 @@ public class NewDbContext: DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<GroupCourse>()
-            .HasKey(cg => new { cg.GroupId, cg.CourseId });
-
-        modelBuilder.Entity<CourseTime>()
-            .HasKey(ct => new { ct.CourseId, ct.WeekId, ct.WeekTypeId });
-        
-        modelBuilder.Entity<RoomCourse>()
-            .HasKey(ct => new { ct.CourseId, ct.RoomId });
-        
-        modelBuilder.Entity<TeacherCourse>()
-            .HasKey(ct => new { ct.CourseId, ct.TeacherId });
-        
-        modelBuilder.Entity<WeekWeekType>()
-            .HasKey(ct => new { ct.WeekId, ct.WeekTypeId });
-
-        modelBuilder.Entity<ReservationGroup>()
-            .HasKey(ct => new { ct.GroupId, ct.ReservationId });
-        
-        modelBuilder.Entity<ReservationRoom>()
-            .HasKey(ct => new { ct.RoomId, ct.ReservationId });
-        
-        modelBuilder.Entity<ReservationTeacher>()
-            .HasKey(ct => new { ct.TeacherId, ct.ReservationId });
-        
-        
+        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         base.OnModelCreating(modelBuilder);
     }
-    
-    
-    
-    
 }

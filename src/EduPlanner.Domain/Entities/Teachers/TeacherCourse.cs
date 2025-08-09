@@ -6,16 +6,11 @@ namespace EduPlanner.Domain.Entities.Teachers;
 [Table("set_cond")]
 public class TeacherCourse
 {
-    [Column("id_cond")]
-    public int TeacherId { get; set; }
-    
-    [Column("id")]
-    public int CourseId { get; set; }
-    
-    [Column("remarks")]
+    public int? TeacherId { get; set; }
+    public int? CourseId { get; set; }
     public string? Remarks { get; set; }
-    
-    [Column("idRoom")]
     public int? IdRoom { get; set; } 
     
+    public virtual Teacher? Teacher { get; set; }
+    public virtual Course? Course { get; set; }
 }
