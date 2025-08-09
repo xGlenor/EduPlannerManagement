@@ -27,7 +27,7 @@ internal class GetTeacherTimesHandler(NewDbContext dbContext): GetTimesHandlerBa
             join rooms in dbContext.RoomCourses on courseTime.CourseId equals rooms.CourseId
             join teacherCourse in dbContext.TeacherCourses on courseTime.CourseId equals teacherCourse.CourseId
             where teacherCourse.TeacherId == teacherId
-                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId))
+                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId.Value))
             select new
             {
                 Week = weeks,
@@ -40,13 +40,11 @@ internal class GetTeacherTimesHandler(NewDbContext dbContext): GetTimesHandlerBa
                 .DistinctBy(x => x.GroupCourse.CourseId)
             .Select(x =>
                 new CourseTimeDTO(
-                    x.CourseTime.CourseId,
+                    x.CourseTime.CourseId.Value,
                     GetGroupsFor(x.CourseTime),
                     GetRoomsFor(x.CourseTime),
                     GetTeacherFor(x.CourseTime),
                     ToDTO(x.Course),
-                    x.CourseTime.MinutesStart,
-                    x.CourseTime.MinutesEnd,
                     x.CourseTime.StartDate,
                     x.CourseTime.EndDate
                 )
@@ -60,7 +58,7 @@ internal class GetTeacherTimesHandler(NewDbContext dbContext): GetTimesHandlerBa
             join reservation in dbContext.Reservations on courseTime.CourseId equals reservation.Id
             join reservationTeacher in dbContext.ReservationTeachers on reservation.Id equals reservationTeacher.ReservationId
             where reservationTeacher.TeacherId == teacherId 
-                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId))
+                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId.Value))
             select new
             {
                 CourseTime = courseTime,
@@ -75,8 +73,6 @@ internal class GetTeacherTimesHandler(NewDbContext dbContext): GetTimesHandlerBa
                     x.Reservation.Type,
                     GetRoomsFor(x.Reservation),
                     GetTeacherFor(x.Reservation),
-                    x.CourseTime.MinutesStart,
-                    x.CourseTime.MinutesEnd,
                     x.CourseTime.StartDate,
                     x.CourseTime.EndDate
                 )

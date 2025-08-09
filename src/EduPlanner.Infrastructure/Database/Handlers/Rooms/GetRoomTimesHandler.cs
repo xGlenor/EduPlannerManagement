@@ -24,7 +24,7 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
             join week in dbContext.Weeks on weekId equals week.Id
             join groupCourse in dbContext.GroupCourses on courseTime.CourseId equals groupCourse.CourseId
             where courseTime.RoomId == roomId 
-                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId))
+                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId.Value))
             select new
             {
                 Week = week,
@@ -37,13 +37,11 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
             .DistinctBy(x => x.GroupCourse.CourseId)
             .Select(x =>
                 new CourseTimeDTO(
-                    x.CourseTime.CourseId,
+                    x.CourseTime.CourseId.Value,
                     GetGroupsFor(x.CourseTime),
                     GetRoomsFor(x.CourseTime),
                     GetTeacherFor(x.CourseTime),
                     ToDTO(x.Course),
-                    x.CourseTime.MinutesStart,
-                    x.CourseTime.MinutesEnd,
                     x.CourseTime.StartDate,
                     x.CourseTime.EndDate
                 )
@@ -56,7 +54,7 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
             from courseTime in dbContext.CourseTimes
             join reservation in dbContext.Reservations on courseTime.CourseId equals reservation.Id
             where courseTime.RoomId == roomId 
-                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId))
+                  && (courseTime.WeekId == weekId || weekTypeIds.Contains(courseTime.WeekTypeId.Value))
             select new
             {
                 CourseTime = courseTime,
@@ -71,8 +69,6 @@ internal class GetRoomTimesHandler(NewDbContext dbContext) : GetTimesHandlerBase
                     x.Reservation.Type,
                     GetRoomsFor(x.Reservation),
                     GetTeacherFor(x.Reservation),
-                    x.CourseTime.MinutesStart,
-                    x.CourseTime.MinutesEnd,
                     x.CourseTime.StartDate,
                     x.CourseTime.EndDate
                 )
