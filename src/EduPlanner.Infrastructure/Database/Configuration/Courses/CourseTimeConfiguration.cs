@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EduPlanner.Infrastructure.Database.Configuration;
+namespace EduPlanner.Infrastructure.Database.Configuration.Courses;
 
 internal sealed class CourseTimeConfiguration : IEntityTypeConfiguration<CourseTime>
 {
@@ -16,8 +16,10 @@ internal sealed class CourseTimeConfiguration : IEntityTypeConfiguration<CourseT
         builder.Property(c => c.WeekId).HasColumnName("idWeek").HasDefaultValue(0);
         builder.Property(c => c.WeekTypeId).HasColumnName("idWeekDef").HasDefaultValue(0);
         builder.Property(c => c.RoomId).HasColumnName("idRoom").IsRequired();
-        builder.Property(c => c.StartDate).HasColumnName("dtStart").HasDefaultValue("00:00:00");
-        builder.Property(c => c.EndDate).HasColumnName("dtStop").HasDefaultValue("00:00:00");
+        builder.Property(c => c.StartDate).HasColumnName("dtStart");
+        builder.Property(c => c.EndDate).HasColumnName("dtStop");
+        builder.Property(c => c.Start).HasColumnName("start").HasDefaultValue(0);
+        builder.Property(c => c.Dur).HasColumnName("dur").HasDefaultValue(0);
 
         builder
             .HasOne(x => x.Week)
