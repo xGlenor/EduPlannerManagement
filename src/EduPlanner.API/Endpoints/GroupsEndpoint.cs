@@ -9,7 +9,7 @@ public sealed class GroupsEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder builder)
     {
-        var group = builder.MapGroup("groups");
+        var group = builder.MapGroup("groups").WithTags("Groups");
 
         group.MapGet("/search", [ProducesResponseType(typeof(IEnumerable<GroupDTO>), StatusCodes.Status200OK)] async (string name, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
