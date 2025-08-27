@@ -17,7 +17,7 @@ public static class Extensions
         });
         
         services.AddDatabase(configuration);
-        services.AddRepositories();
+        //services.AddRepositories();
         return services;
     }
     

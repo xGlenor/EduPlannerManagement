@@ -29,7 +29,7 @@ internal class GetGroupTreeNodesHandler(NewDbContext dbContext)
             )
             .ToList();
         
-         return new TreeNodesDTO<GroupDTO>(nodes);
+        return new TreeNodesDTO<GroupDTO>(nodes);
 
         return null;
     }
