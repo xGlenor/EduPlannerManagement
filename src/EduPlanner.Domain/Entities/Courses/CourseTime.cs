@@ -8,6 +8,11 @@ public class CourseTime
     public int? WeekId { get; set; }
     public int? WeekTypeId { get; set; }
     public int? RoomId { get; set; }
+    
+    public int? Start { get; set; }
+
+    public int? Dur { get; set; }
+
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     

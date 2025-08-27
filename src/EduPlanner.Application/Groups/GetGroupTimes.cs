@@ -2,4 +2,4 @@ using MediatR;
 
 namespace EduPlanner.Application.Groups;
 
-public record GetGroupTimes(int GroupId, int WeekId, int[] WeekTypeIds) : IRequest<GroupTimesDTO>;
+public record GetGroupTimes(int GroupId, int WeekId) : IRequest<GroupTimesDTO>;

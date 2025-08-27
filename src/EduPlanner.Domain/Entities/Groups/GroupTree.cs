@@ -8,4 +8,6 @@ public class GroupTree: IEntity
     public string Name { get; set; }
     public bool ShowPlan { get; set; }
     public int ParentId { get; set; }
+    
+    public ICollection<Group> Groups { get; set; } = new List<Group>();
 }

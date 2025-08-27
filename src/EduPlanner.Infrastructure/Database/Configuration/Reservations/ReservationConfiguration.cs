@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EduPlanner.Infrastructure.Database.Configuration;
+namespace EduPlanner.Infrastructure.Database.Configuration.Reservations;
 
 internal sealed class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
 {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EduPlanner.Infrastructure.Database.Configuration;
+namespace EduPlanner.Infrastructure.Database.Configuration.Teachers;
 
 internal sealed class TeacherCourseConfiguration : IEntityTypeConfiguration<TeacherCourse>
 {

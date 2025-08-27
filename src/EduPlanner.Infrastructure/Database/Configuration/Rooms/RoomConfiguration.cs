@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EduPlanner.Infrastructure.Database.Configuration;
+namespace EduPlanner.Infrastructure.Database.Configuration.Rooms;
 
 internal sealed class RoomConfiguration: IEntityTypeConfiguration<Room>
 {
@@ -20,7 +20,7 @@ internal sealed class RoomConfiguration: IEntityTypeConfiguration<Room>
         builder.Property(x => x.CapacityLab).HasColumnName("capacity_lab");
         builder.Property(x => x.RoomTreeId).HasColumnName("id_room_tree");
         
-        builder.HasOne(x => x.NrRoom)
+        builder.HasOne(x => x.RoomTree)
             .WithMany()
             .HasForeignKey(e => e.RoomTreeId)
             .OnDelete(DeleteBehavior.NoAction)

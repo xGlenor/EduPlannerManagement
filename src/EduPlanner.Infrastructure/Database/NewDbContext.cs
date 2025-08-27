@@ -38,7 +38,7 @@ public class NewDbContext: DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(NewDbContext).Assembly);
         base.OnModelCreating(modelBuilder);
     }
 }
