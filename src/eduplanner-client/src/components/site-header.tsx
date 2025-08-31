@@ -1,5 +1,7 @@
-﻿import {Button} from "@/components/ui/button.tsx";
+﻿import {Button} from "@/components/ui/button.tsx"
+import {Separator} from "@/components/ui/separator.tsx";
 import {ThemeToggle} from "@/components/theme-toggle.tsx";
+import {LanguageToggle} from "@/components/language-toggle.tsx";
 import {Link} from "@tanstack/react-router";
 
 export function SiteHeader() {
@@ -16,6 +18,9 @@ export function SiteHeader() {
         </Button>
 
         <div className="ml-auto flex flex-wrap items-center gap-2">
+          <LanguageToggle />
+
+          <Separator orientation="vertical" />
           <ThemeToggle />
         </div>
       </div>
