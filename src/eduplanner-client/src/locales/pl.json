@@ -12,5 +12,11 @@
     "dark": "Ciemny",
     "light": "Jasny",
     "system": "Systemowy"
+  },
+
+  "footer": {
+    "createdBy": "Stworzone przez: Grzegorz Duraj, Gabriel Siwiec, Łukasz Hamera.",
+    "sourceCode": "Kod źródłowy dostępny na <0>Github</0>.",
+    "rights": "2025 © Wszelkie prawa zastrzeżone"
   }
 }

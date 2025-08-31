@@ -1,6 +1,8 @@
 import {Outlet, createRootRouteWithContext} from '@tanstack/react-router'
 import {SiteHeader} from "@/components/site-header.tsx";
+import {SiteFooter} from "@/components/site-footer.tsx";
 import type {QueryClient} from "@tanstack/react-query";
+
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -14,8 +16,10 @@ function RootComponent() {
       <SiteHeader/>
 
       <main className="flex flex-col flex-1">
-        <Outlet />
+        <Outlet/>
       </main>
+
+      <SiteFooter/>
     </div>
   )
 }
