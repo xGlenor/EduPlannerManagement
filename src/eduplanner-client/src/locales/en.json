@@ -1,4 +1,11 @@
 ﻿{
+  "lngs": {
+    "change-lng": "Change language",
+    "choose-lng": "Choose language",
+    "pl": "Polish",
+    "en": "English"
+  },
+
   "theme": {
     "change-theme": "Change theme",
     "choose-theme": "Choose theme",

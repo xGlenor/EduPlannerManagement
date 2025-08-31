@@ -1,4 +1,5 @@
-﻿import {Button} from "@/components/ui/button.tsx"
+﻿import {NavHeader} from '@/components/nav-header.tsx';
+import {Button} from "@/components/ui/button.tsx";
 import {Separator} from "@/components/ui/separator.tsx";
 import {ThemeToggle} from "@/components/theme-toggle.tsx";
 import {LanguageToggle} from "@/components/language-toggle.tsx";
@@ -13,9 +14,11 @@ export function SiteHeader() {
           variant="ghost"
         >
           <Link to="/">
-            Plany zajęć
+            TUTAJ LOGO
           </Link>
         </Button>
+
+        <NavHeader />
 
         <div className="ml-auto flex flex-wrap items-center gap-2">
           <LanguageToggle />

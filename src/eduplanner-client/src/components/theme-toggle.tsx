@@ -10,8 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {type Theme, useTheme} from "@/contexts/theme-provider"
+import {type Theme} from "@/contexts/theme-provider"
 import {useTranslation} from "react-i18next";
+import {useTheme} from "@/hooks/use-theme.tsx";
 
 export function ThemeToggle() {
   const {setTheme, theme} = useTheme();
