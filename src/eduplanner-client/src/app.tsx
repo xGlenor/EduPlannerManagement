@@ -6,15 +6,23 @@ import "@/lib/i18n";
 
 const queryClient = new QueryClient();
 
-const router = createRouter({routeTree});
+const router = createRouter({
+  routeTree,
+
+  context: {
+    queryClient,
+  },
+
+  defaultPreload: 'intent',
+  defaultPreloadStaleTime: 0,
+  scrollRestoration: true,
+});
 
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router
   }
 }
-
-const queryClient = new QueryClient();
 
 export function App() {
   return (
