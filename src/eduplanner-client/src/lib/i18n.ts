@@ -5,7 +5,7 @@ import {initReactI18next} from "react-i18next";
 import en from '@/locales/en.json';
 import pl from '@/locales/pl.json';
 
-const resources = { en, pl };
+const resources = { pl, en };
 
 i18n
   .use(LanguageDetector)

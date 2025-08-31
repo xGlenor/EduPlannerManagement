@@ -1,8 +1,9 @@
 ﻿{
   "theme": {
-    "change-theme": "Zmień motyw",
-    "dark": "Ciemny",
-    "light": "Jasny",
-    "system": "Systemowy"
+    "change-theme": "Change theme",
+    "choose-theme": "Choose theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
   }
 }
