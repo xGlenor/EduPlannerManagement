@@ -1,0 +1,24 @@
+﻿import {Button} from "@/components/ui/button.tsx";
+import {ThemeToggle} from "@/components/theme-toggle.tsx";
+import {Link} from "@tanstack/react-router";
+
+export function SiteHeader() {
+  return (
+    <header className="bg-background/50  sticky top-0 z-50 flex w-full items-center border-b">
+      <div className="container mx-auto flex h-(--header-height) w-full items-center gap-2 px-4">
+        <Button
+          asChild
+          variant="ghost"
+        >
+          <Link to="/">
+            Plany zajęć
+          </Link>
+        </Button>
+
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          <ThemeToggle />
+        </div>
+      </div>
+    </header>
+  )
+}
