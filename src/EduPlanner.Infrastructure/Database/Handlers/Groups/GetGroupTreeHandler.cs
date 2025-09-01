@@ -1,5 +1,4 @@
-﻿
-using EduPlanner.Application.Groups;
+﻿using EduPlanner.Application.Groups;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,4 +44,3 @@ public class GetGroupTreeHandler(NewDbContext dbContext): IRequestHandler<GetGro
         return roots.Select(Build).ToList();
     }
 }
-internal sealed record GroupTreeItem(int Id, string Name, int? ParentId);
