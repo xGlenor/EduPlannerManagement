@@ -3,8 +3,10 @@ using EduPlanner.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer(); 
+
+
+builder.Services.AddOpenApiDocumentation();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddEndpoints();
@@ -21,8 +23,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseOpenApiDocumentation();
 }
 
 app.UseCors("AllowAll");
