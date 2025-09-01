@@ -14,7 +14,8 @@ public class GetGroupTreeHandler(NewDbContext dbContext): IRequestHandler<GetGro
             .Select(t => new GroupTreeItem(
                 t.Id,
                 t.Name ?? "",
-                t.ParentId == 0 ? (int?)null : t.ParentId))
+                t.ShowPlan,
+                t.ParentId == 0 ? null : t.ParentId))
             .ToListAsync(ct);
         
         var groupsRaw = await dbContext.Groups
@@ -33,6 +34,7 @@ public class GetGroupTreeHandler(NewDbContext dbContext): IRequestHandler<GetGro
         GroupTreeDto Build(GroupTreeItem n) => new(
             n.Id,
             n.Name,
+            n.IsPlanAvailable,
             children[n.Id].Select(Build).ToList(),
             groupsByTree[n.Id].ToList()
         );
