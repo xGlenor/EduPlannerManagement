@@ -1,0 +1,22 @@
+﻿{
+  "lngs": {
+    "change-lng": "Change language",
+    "choose-lng": "Choose language",
+    "pl": "Polish",
+    "en": "English"
+  },
+
+  "theme": {
+    "change-theme": "Change theme",
+    "choose-theme": "Choose theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+
+  "footer": {
+    "createdBy": "Created by: Grzegorz Duraj, Gabriel Siwiec, Łukasz Hamera.",
+    "sourceCode": "Source code available on <0>Github</0>",
+    "rights": "2025 © All rights reserved"
+  }
+}
