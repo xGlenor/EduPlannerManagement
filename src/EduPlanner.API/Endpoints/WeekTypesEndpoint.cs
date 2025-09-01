@@ -8,7 +8,7 @@ public sealed class WeekTypesEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder builder)
     {
-        var group = builder.MapGroup("weektypes");
+        var group = builder.MapGroup("weektypes").WithTags("WeekTypes");;
 
         group.MapGet("", [ProducesResponseType(typeof(IEnumerable<WeekTypeDTO>), StatusCodes.Status200OK)] async (CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {

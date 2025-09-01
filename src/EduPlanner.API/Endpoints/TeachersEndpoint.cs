@@ -10,7 +10,7 @@ public sealed class TeachersEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder builder)
     {
-        var group = builder.MapGroup("teachers");
+        var group = builder.MapGroup("teachers").WithTags("Teachers");;
         
         group.MapGet("/search", [ProducesResponseType(typeof(IEnumerable<RoomDTO>), StatusCodes.Status200OK)] async (string name, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
