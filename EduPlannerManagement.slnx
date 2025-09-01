@@ -1,8 +1,7 @@
 ﻿<Solution>
   <Folder Name="/EduPlanner/">
     <Project Path="src\EduPlaner.DbSeeder\EduPlaner.DbSeeder.csproj" Type="Classic C#" />
-    <Project Path="src\EduPlanner.API\EduPlanner.API.csproj" Type="Classic C#">
-      <BuildDependency Project="src\EduPlanner.DBConverter\EduPlanner.DBConverter.csproj" />
+    <Project Path="src\EduPlanner.API\EduPlanner.API.csproj" Type="Classic C#"> 
     </Project>
     <Project Path="src\EduPlanner.Application\EduPlanner.Application.csproj" Type="Classic C#" />
     <Project Path="src\EduPlanner.Domain\EduPlanner.Domain.csproj" Type="Classic C#" />
