@@ -1,4 +1,14 @@
 ﻿{
+  "nav": {
+    "home": "Strona główna",
+    "schedules": {
+      "label": "Plany zajęć",
+      "classGroups": "Grupy zajęciowe",
+      "teachers": "Nauczyciele",
+      "rooms": "Sale"
+    }
+  },
+
   "lngs": {
     "change-lng": "Zmień język",
     "choose-lng": "Wybierz język",

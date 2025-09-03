@@ -1,4 +1,14 @@
 ﻿{
+  "nav": {
+    "home": "Home",
+    "schedules": {
+      "label": "Schedules",
+      "classGroups": "Class groups",
+      "teachers": "Teachers",
+      "rooms": "Class rooms"
+    }
+  },
+
   "lngs": {
     "change-lng": "Change language",
     "choose-lng": "Choose language",
