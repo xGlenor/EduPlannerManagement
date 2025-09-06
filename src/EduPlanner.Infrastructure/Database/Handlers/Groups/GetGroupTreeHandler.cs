@@ -1,17 +1,18 @@
 ﻿using EduPlanner.Application.Groups;
+using EduPlanner.Application.Tree;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace EduPlanner.Infrastructure.Database.Handlers.Groups;
 
-public class GetGroupTreeHandler(NewDbContext dbContext): IRequestHandler<GetGroupTree, List<GroupTreeDto>>
+public class GetGroupTreeHandler(NewDbContext dbContext): IRequestHandler<GetGroupTree, List<TreeDTO<GroupDTO>>>
 {
-    public async Task<List<GroupTreeDto>> Handle(GetGroupTree request, CancellationToken ct)
+    public async Task<List<TreeDTO<GroupDTO>>> Handle(GetGroupTree request, CancellationToken ct)
     {
         var nodes = await dbContext.GroupTrees
             .AsNoTracking()
             .OrderBy(t => t.Name ?? "") 
-            .Select(t => new GroupTreeItem(
+            .Select(t => new TreeItem(
                 t.Id,
                 t.Name ?? "",
                 t.ParentId == 0 ? (int?)null : t.ParentId))
@@ -30,7 +31,7 @@ public class GetGroupTreeHandler(NewDbContext dbContext): IRequestHandler<GetGro
             x => new GroupDTO(x.Id, x.Name ?? "", x.Shortcut ?? "")
         );
         
-        GroupTreeDto Build(GroupTreeItem n) => new(
+        TreeDTO<GroupDTO> Build(TreeItem n) => new(
             n.Id,
             n.Name,
             children[n.Id].Select(Build).ToList(),
