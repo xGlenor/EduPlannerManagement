@@ -1,3 +1,3 @@
 namespace EduPlanner.Application.Teachers;
 
-public record TeacherDTO(int Id, string Name, string Surname);
+public record TeacherDTO(int Id, string FullNameWithTitle, string Shortcut);
