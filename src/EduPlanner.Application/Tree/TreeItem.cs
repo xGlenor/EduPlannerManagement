@@ -1,3 +1,3 @@
 ﻿namespace EduPlanner.Application.Tree;
 
-public sealed record TreeItem(int Id, string Name, int? ParentId);
+public sealed record TreeItem(int Id, string Name, bool IsPlanAvailable, int? ParentId);

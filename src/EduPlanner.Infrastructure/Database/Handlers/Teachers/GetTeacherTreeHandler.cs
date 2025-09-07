@@ -15,15 +15,16 @@ public class GetTeacherTreeHandler(NewDbContext dbContext) : IRequestHandler<Get
             .Select(t => new TreeItem(
                 t.Id,
                 t.Name ?? "",
-                t.ParentId == 0 ? (int?)null : t.ParentId))
+                t.ShowPlan ?? false,
+                t.ParentId == 0 ? null : t.ParentId))
             .ToListAsync(ct);
-        
+
         var teachersRaw = await dbContext.Teachers
             .AsNoTracking()
             .OrderBy(t => (t.Shortcut ?? t.Name) ?? "")
             .Select(t => new { t.TeacherTreeId, t.Id, t.FullNameWithTitle, t.Shortcut })
             .ToListAsync(ct);
-        
+
         var children = nodes.ToLookup(t => t.ParentId);
 
         var teachersByTree = teachersRaw.ToLookup(
@@ -31,16 +32,20 @@ public class GetTeacherTreeHandler(NewDbContext dbContext) : IRequestHandler<Get
             t => new TeacherDTO(t.Id, t.FullNameWithTitle, t.Shortcut ?? "")
         );
 
-        TreeDTO<TeacherDTO> Build(TreeItem t) => new(
-            t.Id,
-            t.Name,
-            children[t.Id].Select(Build).ToList(),
-            teachersByTree[t.Id].ToList()
+        TreeDTO<TeacherDTO> Build(TreeItem t)
+        {
+            return new TreeDTO<TeacherDTO>(
+                t.Id,
+                t.Name,
+                t.IsPlanAvailable,
+                children[t.Id].Select(Build).ToList(),
+                teachersByTree[t.Id].ToList()
             );
-        
+        }
+
         var roots = request.RootId is int rid
             ? nodes.Where(n => n.Id == rid)
-            : children[default(int?)];
+            : children[default];
 
         return roots.Select(Build).ToList();
     }
