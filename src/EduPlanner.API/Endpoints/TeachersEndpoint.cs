@@ -19,7 +19,7 @@ public sealed class TeachersEndpoint : IEndpoint
             return Results.Ok(nodes);
         });
         
-        group.MapGet("tree", [ProducesResponseType(typeof(TreeNodesDTO<TeacherDTO>), StatusCodes.Status200OK)] async (int parentId, CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        group.MapGet("tree/{parentId}", [ProducesResponseType(typeof(TreeNodesDTO<TeacherDTO>), StatusCodes.Status200OK)] async (int parentId, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
             var query = new GetTeacherTreeNodes(parentId);
             var nodes = await sender.Send(query, cancellationToken);
@@ -29,6 +29,13 @@ public sealed class TeachersEndpoint : IEndpoint
         group.MapGet("times", [ProducesResponseType(typeof(TeacherTimesDTO), StatusCodes.Status200OK)] async (int teacherId, int weekId, int[] weekTypeIds, CancellationToken cancellationToken, [FromServices] ISender sender) =>
         {
             var query = new GetTeacherTimes(teacherId, weekId, weekTypeIds);
+            var courseTimes = await sender.Send(query, cancellationToken);
+            return Results.Ok(courseTimes);
+        });
+
+        group.MapGet("tree", [ProducesResponseType(typeof(TeacherTimesDTO), StatusCodes.Status200OK)] async (CancellationToken cancellationToken, [FromServices] ISender sender) =>
+        {
+            var query = new GetTeacherTree();
             var courseTimes = await sender.Send(query, cancellationToken);
             return Results.Ok(courseTimes);
         });

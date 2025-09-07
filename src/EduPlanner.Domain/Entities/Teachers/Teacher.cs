@@ -16,4 +16,8 @@ public class Teacher: IEntity
     public int? TeacherTreeId { get; set; }
     
     public virtual TeacherTree? TeacherTree { get; set; }
+    
+    public string FullName => $"{Name} {Surname}";
+    
+    public string FullNameWithTitle => $"{Title} {Name} {Surname} ";
 }
